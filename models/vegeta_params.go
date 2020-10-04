@@ -1,7 +1,7 @@
 package models
 
 // struct to hold arguments to vegeta
-type struct Vegeta_attack_params {
+type Vegeta_attack_params struct {
 	Method string
 	URL string
 }

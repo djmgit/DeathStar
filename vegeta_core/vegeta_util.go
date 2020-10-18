@@ -2,6 +2,7 @@ package vegeta_core
 
 import (
 	"fmt"
+	"time"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
 	models "github.com/djmgit/DeathStar/models"
 )
@@ -29,4 +30,18 @@ func (vegeta_util *Vegeta_util) init_vegeta(vegeta_params models.Vegeta_attack_p
 func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
 
 	// prepare vegeta for attack
+
+	err, status := vegeta_util.init()
+
+	if err != nil {
+		// print errpr
+		return err, nil
+	}
+
+	// create params
+	rate := vegeta.Rate{Freq: vegeta_util.vageta_params.Rate, Per: time.Second}
+	duration := vegeta_util.vegeta_params.Duration * time.second
+
+	// create target
+
 }

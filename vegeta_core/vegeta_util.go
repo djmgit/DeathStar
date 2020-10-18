@@ -50,5 +50,11 @@ func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
 	attacker := vegeta.NewAttacker()
 
 	// get the result metrics
+	var metrics vegeta.Metrics
+	for res := range attacker.Attack(targeter, rate, duration, "Big Bang!") {
+		metrics.Add(res)
+	}
+	metrics.Close()
 
+	return metrics
 }

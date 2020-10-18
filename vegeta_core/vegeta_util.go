@@ -43,5 +43,12 @@ func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
 	duration := vegeta_util.vegeta_params.Duration * time.second
 
 	// create target
+	targetter := vegeta.NewStaticTargeter(vegeta.Target{
+		Method: "GET",
+		URL: vegeta_util.vegeta_params.Url
+	})
+	attacker := vegeta.NewAttacker()
+
+	// get the result metrics
 
 }

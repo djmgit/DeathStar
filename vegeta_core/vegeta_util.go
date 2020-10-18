@@ -27,4 +27,6 @@ func (vegeta_util *Vegeta_util) init_vegeta(vegeta_params models.Vegeta_attack_p
 }
 
 func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
+
+	// prepare vegeta for attack
 }

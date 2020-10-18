@@ -56,5 +56,5 @@ func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
 	}
 	metrics.Close()
 
-	return metrics
+	return nil, metrics
 }

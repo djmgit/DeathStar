@@ -6,8 +6,8 @@ import (
 
 // struct to hold arguments to vegeta
 type VegetaAttackParams struct {
-	Method string
-	Url string
-	Rate int
-	Duration time.Duration
+	Method string	`json:"httpMethod"`
+	Url string	`json:"url"`
+	Rate int	`json:"rate"`
+	Duration time.Duration	`json:"duration"`
 }

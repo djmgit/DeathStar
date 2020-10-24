@@ -1,51 +1,49 @@
 package vegeta_core
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
 	models "github.com/djmgit/DeathStar/models"
 )
 
-type Vegeta_util struct {
-	vegeta_params models.Vegeta_attack_params
+type VegetaUtil struct {
+	VegetaParams models.VegetaAttackParams
 }
 
 // validate the params sent to vegeta
-func (vegeta_util *Vegeta_util) validate_vegeta_params() bool {
+func (vegetaUtil *VegetaUtil) validateVegetaParams() bool {
 	return true
 }
 
-func (vegeta_util *Vegeta_util) init_vegeta(vegeta_params models.Vegeta_attack_params) (error, bool) {
-	vegeta_util.vegeta_params = vegeta_params
+func (vegetaUtil *VegetaUtil) initVegeta() (error, bool) {
 
-	// validate params
-	if !vegeta_util.validate_vegeta_params() {
+	if !vegetaUtil.validateVegetaParams() {
 		return nil, false
 	}
 
 	return nil, true
 }
 
-func (vegeta_util *Vegeta_util) Engage_vegeta() (error, vegeta.Metrics) {
+func (vegetaUtil *VegetaUtil) EngageVegeta() (error, vegeta.Metrics) {
 
 	// prepare vegeta for attack
 
-	err, status := vegeta_util.init()
+	err, _ := vegetaUtil.initVegeta()
 
 	if err != nil {
 		// print errpr
-		return err, nil
+		return err, vegeta.Metrics{}
 	}
 
 	// create params
-	rate := vegeta.Rate{Freq: vegeta_util.vageta_params.Rate, Per: time.Second}
-	duration := vegeta_util.vegeta_params.Duration * time.second
+	rate := vegeta.Rate{Freq: vegetaUtil.VegetaParams.Rate, Per: time.Second}
+	duration := vegetaUtil.VegetaParams.Duration * time.Second
 
 	// create target
-	targetter := vegeta.NewStaticTargeter(vegeta.Target{
+	targeter := vegeta.NewStaticTargeter(vegeta.Target{
 		Method: "GET",
-		URL: vegeta_util.vegeta_params.Url
+		URL: vegetaUtil.VegetaParams.Url,
 	})
 	attacker := vegeta.NewAttacker()
 

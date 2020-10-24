@@ -2,12 +2,25 @@ package main
 
 import (
 	"fmt"
-	vegetautil "github.com/djmgit/DeathStar/vegeta_core"
+	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
+	vegetaModels "github.com/djmgit/DeathStar/models"
 )
 
 func main() {
-	// this is place holder for now
+	// locally testing vegeta
 
-	fmt.Println("Main")
-	vegetautil.Display()
+	params := vegetaModels.VegetaAttackParams {
+		Method: "GET",
+		Url: "https://google.com",
+		Rate: 100,
+		Duration: 10,
+	}
+
+	vegetaAttacker := vegetaUtil.VegetaUtil {
+		VegetaParams: params,
+	}
+
+	_, metrics := vegetaAttacker.EngageVegeta()
+
+	fmt.Printf("99th percentile: %s\n", metrics.Latencies.P99);
 }

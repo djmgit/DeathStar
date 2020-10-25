@@ -6,6 +6,7 @@ import (
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
+	"github.com/djmgit/DeathStar/lambdautil"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 

@@ -32,7 +32,7 @@ func (lambdautil *LambdaUtil) getAWSSession() (error) {
 		// shared config not set, fall back to provided creds
 		sess, err = session.NewSession(&Aws.Config{
 			Region: aws.String(lambdautil.AWSRegion),
-			Credentials: credentials.NewStaticCredentials(lambdautil.AWSAccessKeyID, lambdautil.AWSSecretAccessKey)
+			Credentials: credentials.NewStaticCredentials(lambdautil.AWSAccessKeyID, lambdautil.AWSSecretAccessKey),
 		})
 	}
 
@@ -49,7 +49,7 @@ func (lambdautil *LambdaUtil) getAWSSession() (error) {
 func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	// create the lambda function using the provided informations
-	if lambdautil != nil {
+	if lambdautil.awsSession != nil {
 		err := lambda.getAWSSession()
 		if err != nil {
 			return err

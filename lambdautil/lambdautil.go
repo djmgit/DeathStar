@@ -6,7 +6,7 @@ import (
     "github.com/aws/aws-sdk-go/aws/session"
     "github.com/aws/aws-sdk-go/service/lambda"
     "fmt"
-    //"os"
+    "io/ioutil"
 )
 
 type LambdaUtil struct {
@@ -58,8 +58,14 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	svc := lambda.New(lambdaUtil.AWSSession)
 
+	lambdaFuncContents, err := ioutil.ReadFile(lambdaUtil.LambdaFuncName)
+	if err != nil {
+		fmt.Println("Could not read " + lambdaUtil.LambdaFuncName + ".zip")
+		return err
+	}
+
 	createCode := &lambda.FunctionCode{
-		ZipFile:         contents,
+		ZipFile:         lambdaFuncContents,
 	}
 
 	createArgs := &lambda.CreateFunctionInput{
@@ -70,7 +76,7 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 		Runtime:      &lambdaUtil.LambdaFunctionRuntime,
 	}
 
-	result, err := svc.CreateFunction(createArgs)
+	_, err = svc.CreateFunction(createArgs)
 
 	if err != nil {
 		fmt.Println(err.Error())

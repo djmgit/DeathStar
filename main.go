@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"flag"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
@@ -27,7 +28,7 @@ func main() {
 	var isLocal bool
 	var zipFilePath string
 	var confPath string
-	var deploy string
+	var deploy bool
 
 	flag.BoolVar(&isLocal, "local", false, "Denotes and DeathStar will use local zip. Zip path must be profiled")
 	flag.StringVar(&zipFilePath, "zip-file-path", "./func.zip", "Path to local Zip file containing handler")
@@ -47,6 +48,21 @@ func main() {
 			}
 		} else {
 			// donwload zipfile and set zip file path in zipFilePath
+		}
+
+		lambdaUtil := lambdautil.LambdaUtil {
+			AWSRegion: "us-east-1",
+			LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
+			LambdaFuncName: "func-test-2",
+			LambdaFunctionHandler: "main",
+			LambdaFunctionRuntime: "go1.x",
+			ZipFilePath: "func.zip",
+		}
+
+		err := lambdaUtil.CreateFunction()
+
+		if err != nil {
+			fmt.Println(err.Error())
 		}
 
 		// Upload function and deploy

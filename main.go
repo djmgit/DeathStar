@@ -37,7 +37,7 @@ func main() {
 
 	if deploy == true {
 
-		if isLocal == false {
+		if isLocal == true {
 
 			// check zip-file-path is present or not
 			if zipFilePath == "" {

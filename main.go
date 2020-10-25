@@ -8,9 +8,15 @@ import (
 )
 
 // handler for lambda
-func HandleLambdaEvent(event vegetaModels.VegetaAttackParams) (vegeta.Metrics, error) {
+func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error) {
 
-	return vegeta.Metrics, nil
+	vegetaAttacker := vegetaUtil.VegetaUtil {
+		VegetaParams: event.VegetaAttackParams
+	}
+
+	_, metrics := vegetaAttacker.EngageVegeta()
+
+	return metrics, nil
 }
 
 func main() {

@@ -4,7 +4,14 @@ import (
 	"fmt"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
 	vegetaModels "github.com/djmgit/DeathStar/models"
+	vegeta "github.com/tsenart/vegeta/v12/lib"
 )
+
+// handler for lambda
+func HandleLambdaEvent(event vegetaModels.VegetaAttackParams) (vegeta.Metrics, error) {
+
+	return vegeta.Metrics, nil
+}
 
 func main() {
 	// locally testing vegeta

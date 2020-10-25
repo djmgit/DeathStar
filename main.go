@@ -21,7 +21,15 @@ func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error)
 }
 
 func main() {
-	// locally testing vegeta
 
-	lambda.Start(HandleLambdaEvent)
+	var isLocal bool
+	var zipFilePath string
+	var confPath string
+
+	flag.BoolVar(&isLocal, "local", false, "Denotes and DeathStar will use local zip. Zip path must be profiled")
+	flag.StringVar(&zipFilePath, "zip-file-path", "./func.zip", "Path to local Zip file containing handler")
+	flag.StringVar(&confPath, "conf", "deathstar.conf", "Path to conf file")
+
+	flag.Parse()
+
 }

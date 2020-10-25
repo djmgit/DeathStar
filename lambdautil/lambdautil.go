@@ -18,21 +18,21 @@ type LambdaUtil struct {
 	ZipFilePath string `json:"zipFilePath"`
 	AWSAccessKeyID string `json:"awsAccessKeyID"`
 	AWSSecretAccessKey string `json:"awsSecretAccessKey`
-	awsSession *session.Session
+	AWSSession *session.Session
 }
 
-func (lambdautil *LambdaUtil) getAWSSession() (error) {
+func (lambdaUtil *LambdaUtil) GetAWSSession() (error) {
 
 	// create the aws session and set it as struct property
 	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String(lambdautil.AWSRegion),
+		Region: aws.String(lambdaUtil.AWSRegion),
 	})
 
 	if err != nil {
 		// shared config not set, fall back to provided creds
-		sess, err = session.NewSession(&Aws.Config{
-			Region: aws.String(lambdautil.AWSRegion),
-			Credentials: credentials.NewStaticCredentials(lambdautil.AWSAccessKeyID, lambdautil.AWSSecretAccessKey),
+		sess, err = session.NewSession(&aws.Config{
+			Region: aws.String(lambdaUtil.AWSRegion),
+			Credentials: credentials.NewStaticCredentials(lambdaUtil.AWSAccessKeyID, lambdaUtil.AWSSecretAccessKey, ""),
 		})
 	}
 
@@ -41,7 +41,7 @@ func (lambdautil *LambdaUtil) getAWSSession() (error) {
 		return err
 	}
 
-	lambdautil.awsSession = sess
+	lambdaUtil.AWSSession = sess
 
 	return nil
 }
@@ -49,14 +49,14 @@ func (lambdautil *LambdaUtil) getAWSSession() (error) {
 func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	// create the lambda function using the provided informations
-	if lambdautil.awsSession != nil {
-		err := lambda.getAWSSession()
+	if lambdaUtil.AWSSession != nil {
+		err := lambdaUtil.GetAWSSession()
 		if err != nil {
 			return err
 		}
 	}
 
-	svc := lambda.New(lambdautil.awsSession)
+	svc := lambda.New(lambdaUtil.AWSSession)
 
 	createCode := &lambda.FunctionCode{
 		ZipFile:         contents,
@@ -64,10 +64,10 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	createArgs := &lambda.CreateFunctionInput{
 		Code:         createCode,
-		FunctionName: &LambdaFuncName,
-		Handler:      &LambdaFunctionHandler,
-		Role:         &LambdaRole,
-		Runtime:      &LambdaFunctionRuntime,
+		FunctionName: &lambdaUtil.LambdaFuncName,
+		Handler:      &lambdaUtil.LambdaFunctionHandler,
+		Role:         &lambdaUtil.LambdaRole,
+		Runtime:      &lambdaUtil.LambdaFunctionRuntime,
 	}
 
 	result, err := svc.CreateFunction(createArgs)

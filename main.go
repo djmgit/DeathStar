@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
+	"github.com/aws/aws-lambda-go/lambda"
 )
 
 // handler for lambda
 func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error) {
 
 	vegetaAttacker := vegetaUtil.VegetaUtil {
-		VegetaParams: event.VegetaAttackParams
+		VegetaParams: event.VegetaParams,
 	}
 
 	_, metrics := vegetaAttacker.EngageVegeta()
@@ -22,18 +23,5 @@ func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error)
 func main() {
 	// locally testing vegeta
 
-	params := vegetaModels.VegetaAttackParams {
-		Method: "GET",
-		Url: "https://google.com",
-		Rate: 100,
-		Duration: 10,
-	}
-
-	vegetaAttacker := vegetaUtil.VegetaUtil {
-		VegetaParams: params,
-	}
-
-	_, metrics := vegetaAttacker.EngageVegeta()
-
-	fmt.Printf("99th percentile: %s\n", metrics.Latencies.P99);
+	lambda.Start(HandleLambdaEvent)
 }

@@ -42,7 +42,7 @@ func (vegetaUtil *VegetaUtil) EngageVegeta() (error, vegeta.Metrics) {
 
 	// create target
 	targeter := vegeta.NewStaticTargeter(vegeta.Target{
-		Method: vegetaUtil.Method,
+		Method: vegetaUtil.VegetaParams.Method,
 		URL: vegetaUtil.VegetaParams.Url,
 	})
 	attacker := vegeta.NewAttacker()

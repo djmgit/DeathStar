@@ -13,6 +13,8 @@ type LambdaUtil struct {
 	AWSRegion string `json:"awsRegion"`
 	LambdaRole string `json:"lambdaRole"`
 	LambdaFuncName string `json:"lambdaFuncName"`
+	LambdaFunctionHandler string `json:"lambdaFunctionHandler"`
+	LambdaFunctionRuntime string `json:"lambdaFunctionRuntime"`
 	ZipFilePath string `json:"zipFilePath"`
 	AWSAccessKeyID string `json:"awsAccessKeyID"`
 	AWSSecretAccessKey string `json:"awsSecretAccessKey`
@@ -47,5 +49,33 @@ func (lambdautil *LambdaUtil) getAWSSession() (error) {
 func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	// create the lambda function using the provided informations
+	if lambdautil != nil {
+		err := lambda.getAWSSession()
+		if err != nil {
+			return err
+		}
+	}
 
+	svc := lambda.New(lambdautil.awsSession)
+
+	createCode := &lambda.FunctionCode{
+		ZipFile:         contents,
+	}
+
+	createArgs := &lambda.CreateFunctionInput{
+		Code:         createCode,
+		FunctionName: &LambdaFuncName,
+		Handler:      &LambdaFunctionHandler,
+		Role:         &LambdaRole,
+		Runtime:      &LambdaFunctionRuntime,
+	}
+
+	result, err := svc.CreateFunction(createArgs)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return err
+	}
+
+	return nil
 }

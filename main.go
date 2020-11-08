@@ -56,7 +56,7 @@ func main() {
 			LambdaFuncName: "func-test-2",
 			LambdaFunctionHandler: "main",
 			LambdaFunctionRuntime: "go1.x",
-			ZipFilePath: "func.zip",
+			ZipFilePath: zipFilePath,
 		}
 
 		err := lambdaUtil.CreateFunction()

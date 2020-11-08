@@ -49,7 +49,7 @@ func (lambdaUtil *LambdaUtil) GetAWSSession() (error) {
 func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	// create the lambda function using the provided informations
-	if lambdaUtil.AWSSession != nil {
+	if lambdaUtil.AWSSession == nil {
 		err := lambdaUtil.GetAWSSession()
 		if err != nil {
 			return err

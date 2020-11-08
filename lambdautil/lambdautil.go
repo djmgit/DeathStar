@@ -58,9 +58,9 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	svc := lambda.New(lambdaUtil.AWSSession)
 
-	lambdaFuncContents, err := ioutil.ReadFile(lambdaUtil.LambdaFuncName)
+	lambdaFuncContents, err := ioutil.ReadFile(lambdaUtil.ZipFilePath)
 	if err != nil {
-		fmt.Println("Could not read " + lambdaUtil.LambdaFuncName + ".zip")
+		fmt.Println("Could not read " + lambdaUtil.ZipFilePath + ".zip")
 		return err
 	}
 

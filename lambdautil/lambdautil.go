@@ -108,6 +108,6 @@ func (lambdaUtil *LambdaUtil) runFunction(lambdaRequest vegetaModels.LambdaReque
 		return err, &vegeta.Metrics{}
 	}
 
-	_, _ == svc.Invoke(&lambda.InvokeInput{FunctionName: aws.String(lambdaUtil.LambdaFuncName), Payload: payload})
+	_, _ = svc.Invoke(&lambda.InvokeInput{FunctionName: aws.String(lambdaUtil.LambdaFuncName), Payload: payload})
 	return nil, nil
 }

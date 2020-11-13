@@ -60,6 +60,12 @@ func main() {
 
 	flag.Parse()
 
+	// read the yaml config
+	yamlConfig, err := readConfYaml(confPath)
+	if err != nil {
+		os.Exit(2)
+	}
+
 	if deploy == true {
 
 		if isLocal == true {

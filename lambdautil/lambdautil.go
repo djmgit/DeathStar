@@ -4,7 +4,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
     "github.com/aws/aws-sdk-go/aws/session"
-    "github.com/aws/aws-sdk-go/service/lambda"
+	"github.com/aws/aws-sdk-go/service/lambda"
+	vegetaModels "github.com/djmgit/DeathStar/models"
     "fmt"
     "io/ioutil"
 )
@@ -83,5 +84,9 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 		return err
 	}
 
+	return nil
+}
+
+func (lambdaUtil *LambdaUtil) runFunction(yamlConfig vegetaModels.YAMLConfig) error {
 	return nil
 }

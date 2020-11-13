@@ -1,5 +1,5 @@
 package models
 
-type  Attacks struct {
+type  YAMLConfig struct {
 	Attacks []LambdaRequest `json:"attacks"`
 }

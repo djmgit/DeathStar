@@ -108,6 +108,21 @@ func (lambdaUtil *LambdaUtil) runFunction(lambdaRequest vegetaModels.LambdaReque
 		return err, &vegeta.Metrics{}
 	}
 
-	_, _ = svc.Invoke(&lambda.InvokeInput{FunctionName: aws.String(lambdaUtil.LambdaFuncName), Payload: payload})
-	return nil, nil
+	result, err := svc.Invoke(&lambda.InvokeInput{FunctionName: aws.String(lambdaUtil.LambdaFuncName), Payload: payload})
+	if err != nil {
+		fmt.Println("Error invoking fucntion...")
+		fmt.Println(err.Error())
+		return err, &vegeta.Metrics{}
+	}
+
+	var response vegeta.Metrics
+
+	err = json.Unmarshal(result.Payload, &response)
+	if err != nil {
+		fmt.Println("Error unmarshalling response...")
+		fmt.Println(err.Error())
+		return err, &vegeta.Metrics{}
+	}
+
+	return nil, &response
 }

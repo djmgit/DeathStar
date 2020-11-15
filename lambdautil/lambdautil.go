@@ -89,7 +89,7 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 	return nil
 }
 
-func (lambdaUtil *LambdaUtil) runFunction(lambdaRequest vegetaModels.LambdaRequest) (error, *vegeta.Metrics) {
+func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaRequest) (error, *vegeta.Metrics) {
 
 	// create the lambda function using the provided informations
 	if lambdaUtil.AWSSession == nil {

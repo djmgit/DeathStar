@@ -61,7 +61,7 @@ func main() {
 	flag.Parse()
 
 	// read the yaml config
-	yamlConfig, err := readConfYaml(confPath)
+	err, yamlConfig := readConfYaml(confPath)
 	if err != nil {
 		os.Exit(2)
 	}
@@ -79,6 +79,7 @@ func main() {
 			// donwload zipfile and set zip file path in zipFilePath
 		}
 
+		// create the lambda
 		lambdaUtil := lambdautil.LambdaUtil {
 			AWSRegion: "us-east-1",
 			LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
@@ -94,9 +95,14 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
-		// Upload function and deploy
-
 		// initiate attack and display result
+		vegAttackUtil := vegetaUtil.VegetaAttackUtils{
+			LmUtil: &lambdaUtil,
+		}
+		err, resultMetrics := vegAttackUtil.VegetaSeqAttack(yamlConfig.Attacks)
+		for _, result := range resultMetrics {
+			fmt.Println("%v", *result)
+		}
 
 		// clean up function
 

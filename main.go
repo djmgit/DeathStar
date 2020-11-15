@@ -65,10 +65,6 @@ func main() {
 	if err != nil {
 		os.Exit(2)
 	}
-	fmt.Println(confPath)
-	fmt.Println("%+v\n", yamlConfig)
-	fmt.Println(yamlConfig.Attacks[0].AttackName)
-	os.Exit(0)
 
 	if deploy == true {
 
@@ -105,7 +101,7 @@ func main() {
 		}
 		err, resultMetrics := vegAttackUtil.VegetaSeqAttack(yamlConfig.Attacks)
 		for _, result := range resultMetrics {
-			fmt.Println("%v", *result)
+			fmt.Println("%+v\n", *result)
 		}
 
 		// clean up function

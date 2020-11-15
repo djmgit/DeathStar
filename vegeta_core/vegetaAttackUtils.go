@@ -23,5 +23,5 @@ func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.L
 		}
 	}
 
-	return nil, attackResult
+	return nil, resultMetrics
 }

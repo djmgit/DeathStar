@@ -60,13 +60,13 @@ func main() {
 
 	flag.Parse()
 
-	// read the yaml config
-	err, yamlConfig := readConfYaml(confPath)
-	if err != nil {
-		os.Exit(2)
-	}
-
 	if deploy == true {
+
+		// read the yaml config
+		err, yamlConfig := readConfYaml(confPath)
+		if err != nil {
+			os.Exit(2)
+		}
 
 		if isLocal == true {
 
@@ -90,7 +90,7 @@ func main() {
 			ZipFilePath: zipFilePath,
 		}
 
-		err := lambdaUtil.CreateFunction()
+		err = lambdaUtil.CreateFunction()
 
 		if err != nil {
 			fmt.Println("Function creation failed...")

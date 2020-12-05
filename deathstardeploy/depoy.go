@@ -5,6 +5,7 @@ import (
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	"io/ioutil"
 	"fmt"
+	"errors"
 )
 
 type DeathStarDeploy struct {
@@ -38,5 +39,22 @@ func (deathStarDeploy *DeathStarDeploy) readConfYaml() (error) {
 
 func (deathStarDeploy *DeathStarDeploy) Start() error {
 
+	err := deathStarDeploy.readConfYaml()
+	if err != nil {
+		return err
+	}
 
+	if deathStarDeploy.LocalZip == true {
+
+		// check zip-file-path is present or not
+		if deathStarDeploy.ZipFilePath == "" {
+			err := errors.New("Zip file path not provided")
+			fmt.Println(err.Error())
+			return err
+		}
+	} else {
+		// donwload zipfile and set zip file path in zipFilePath
+	}
+
+	return nil
 }

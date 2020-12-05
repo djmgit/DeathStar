@@ -80,6 +80,7 @@ func main() {
 		}
 
 		// create the lambda
+		fmt.Println("Creating the lambda attack function...")
 		lambdaUtil := lambdautil.LambdaUtil {
 			AWSRegion: "us-east-1",
 			LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
@@ -92,14 +93,21 @@ func main() {
 		err := lambdaUtil.CreateFunction()
 
 		if err != nil {
+			fmt.Println("Function creation failed...")
 			fmt.Println(err.Error())
 		}
+
+		fmt.Println("Function creation succeeded...")
 
 		// initiate attack and display result
 		vegAttackUtil := vegetaUtil.VegetaAttackUtils{
 			LmUtil: &lambdaUtil,
 		}
+
+		fmt.Println("Running attack...")
 		err, resultMetrics := vegAttackUtil.VegetaSeqAttack(yamlConfig.Attacks)
+
+		fmt.Println("Attack complete...")
 		for _, result := range resultMetrics {
 			fmt.Println(result.Latencies.Mean)
 			fmt.Println("\n")
@@ -108,11 +116,13 @@ func main() {
 			fmt.Println(result.Success)
 		}
 
+		fmt.Println("Cleaning up function...")
 		err = lambdaUtil.DeleteFunction()
 		if err != nil {
 			fmt.Println("Faced error while deleting function")
 		}
 
+		fmt.Println("Exiting DeathStar...")
 		os.Exit(0)
 	}
 

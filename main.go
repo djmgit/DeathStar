@@ -25,27 +25,6 @@ func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error)
 	return metrics, nil
 }
 
-// function to read config yaml
-func readConfYaml(confPath string) (error, *vegetaModels.YAMLConfig) {
-
-	yamlFile, err := ioutil.ReadFile(confPath)
-	if err != nil {
-		fmt.Println("Unable to read conf yaml")
-		fmt.Println(err.Error())
-		return err, nil
-	}
-
-	var yamlConfig vegetaModels.YAMLConfig
-	err = yaml.Unmarshal(yamlFile, &yamlConfig)
-	if err != nil {
-		fmt.Println("Error parsing the yaml config")
-		fmt.Println(err.Error())
-		return err, nil
-	}
-
-	return nil, &yamlConfig
-}
-
 func main() {
 
 	var isLocal bool

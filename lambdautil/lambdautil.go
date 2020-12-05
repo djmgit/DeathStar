@@ -126,3 +126,25 @@ func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaReque
 
 	return nil, &response
 }
+
+func (lambdaUtil *LambdaUtil) DeleteFunction() error {
+
+	// create the lambda function using the provided informations
+	if lambdaUtil.AWSSession == nil {
+		err := lambdaUtil.GetAWSSession()
+		if err != nil {
+			return err
+		}
+	}
+
+	svc := lambda.New(lambdaUtil.AWSSession)
+
+	// create the deletion input
+	deleteInput := &lambda.DeleteFunctionInput {
+		FunctionName: aws.String(lambdaUtil.LambdaFuncName),
+	}
+
+	_, err := svc.DeleteFunction(deleteInput)
+
+	return err
+}

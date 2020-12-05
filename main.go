@@ -101,7 +101,11 @@ func main() {
 		}
 		err, resultMetrics := vegAttackUtil.VegetaSeqAttack(yamlConfig.Attacks)
 		for _, result := range resultMetrics {
-			fmt.Println("%+v\n", *result)
+			fmt.Println(result.Latencies.Mean)
+			fmt.Println("\n")
+			fmt.Println(result.Duration)
+			fmt.Println("\n")
+			fmt.Println(result.Success)
 		}
 
 		// clean up function

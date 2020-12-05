@@ -108,9 +108,10 @@ func main() {
 			fmt.Println(result.Success)
 		}
 
-		// clean up function
-
-		// exit DeathStar
+		err = lambdaUtil.DeleteFunction()
+		if err != nil {
+			fmt.Println("Faced error while deleting function")
+		}
 
 		os.Exit(0)
 	}

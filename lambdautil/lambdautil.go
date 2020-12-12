@@ -18,6 +18,8 @@ type LambdaUtil struct {
 	LambdaFuncName string `json:"lambdaFuncName"`
 	LambdaFunctionHandler string `json:"lambdaFunctionHandler"`
 	LambdaFunctionRuntime string `json:"lambdaFunctionRuntime"`
+	LambdaMemorySize int64 `json:"lambdaMemorySize" yaml:"lambdaMemorySize"`
+	LambdaTimeOut int64 `json:"lambdaTimeOut" yaml:"lambdaTimeOut"`
 	ZipFilePath string `json:"zipFilePath"`
 	AWSAccessKeyID string `json:"awsAccessKeyID"`
 	AWSSecretAccessKey string `json:"awsSecretAccessKey`
@@ -76,6 +78,8 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 		Handler:      &lambdaUtil.LambdaFunctionHandler,
 		Role:         &lambdaUtil.LambdaRole,
 		Runtime:      &lambdaUtil.LambdaFunctionRuntime,
+		MemorySize:   &lambdaUtil.LambdaMemorySize,
+		Timeout:	  &lambdaUtil.LambdaTimeOut,
 	}
 
 	_, err = svc.CreateFunction(createArgs)

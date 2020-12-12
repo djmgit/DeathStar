@@ -60,11 +60,14 @@ func main() {
 
 	flag.Parse()
 
+	deathlogger := setupLogging(loglevel)
+
 	if deploy == true {
 		dsDeployHandler := dsDeploy.DeathStarDeploy {
 			ZipFilePath: zipFilePath,
 			ConfPath: confPath,
 			LocalZip: isLocal,
+			DeathLoger: deathlogger,
 		}
 
 		err := dsDeployHandler.Start()

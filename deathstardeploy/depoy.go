@@ -8,6 +8,7 @@ import (
 	"github.com/rs/zerolog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"time"
 )
 
 type DeathStarDeploy struct {
@@ -62,7 +63,11 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	LambdaRegion := "us-east-1"
 	LambdaMemorySize := int64(128)
 	LambdaTimeOut := int64(3)
-	LambdaName := "death-star-lambda"
+
+	// generate the function name
+	currentTime := time.Now()
+	formattedDateTime := currentTime.Format("01-02-2006T15-04-05")
+	LambdaName := "death-star-lambda-" + formattedDateTime
 
 	// get config values from the yaml
 	if lambdaConfig.LambdaRegion != "" {

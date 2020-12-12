@@ -67,7 +67,7 @@ func main() {
 			ZipFilePath: zipFilePath,
 			ConfPath: confPath,
 			LocalZip: isLocal,
-			DeathLoger: deathlogger,
+			DeathLogger: deathlogger,
 		}
 
 		err := dsDeployHandler.Start()

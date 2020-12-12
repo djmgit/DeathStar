@@ -1,15 +1,15 @@
 package lambdautil
 
 import (
+	"encoding/json"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-    "github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/lambda"
-	vegeta "github.com/tsenart/vegeta/v12/lib"
 	vegetaModels "github.com/djmgit/DeathStar/models"
-	"fmt"
+	"github.com/rs/zerolog"
+	vegeta "github.com/tsenart/vegeta/v12/lib"
 	"io/ioutil"
-	"encoding/json"
 )
 
 type LambdaUtil struct {
@@ -21,6 +21,7 @@ type LambdaUtil struct {
 	ZipFilePath string `json:"zipFilePath"`
 	AWSAccessKeyID string `json:"awsAccessKeyID"`
 	AWSSecretAccessKey string `json:"awsSecretAccessKey`
+	DeathLogger zerolog.Logger
 	AWSSession *session.Session
 }
 
@@ -40,7 +41,6 @@ func (lambdaUtil *LambdaUtil) GetAWSSession() (error) {
 	}
 
 	if err != nil {
-		fmt.Println(err.Error())
 		return err
 	}
 
@@ -63,7 +63,6 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	lambdaFuncContents, err := ioutil.ReadFile(lambdaUtil.ZipFilePath)
 	if err != nil {
-		fmt.Println("Could not read " + lambdaUtil.ZipFilePath + ".zip")
 		return err
 	}
 
@@ -82,7 +81,6 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 	_, err = svc.CreateFunction(createArgs)
 
 	if err != nil {
-		fmt.Println(err.Error())
 		return err
 	}
 
@@ -103,15 +101,11 @@ func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaReque
 
 	payload, err := json.Marshal(lambdaRequest)
 	if err != nil {
-		fmt.Println("Error marshalling request...")
-		fmt.Println(err.Error())
 		return err, &vegeta.Metrics{}
 	}
 
 	result, err := svc.Invoke(&lambda.InvokeInput{FunctionName: aws.String(lambdaUtil.LambdaFuncName), Payload: payload})
 	if err != nil {
-		fmt.Println("Error invoking fucntion...")
-		fmt.Println(err.Error())
 		return err, &vegeta.Metrics{}
 	}
 
@@ -119,8 +113,6 @@ func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaReque
 
 	err = json.Unmarshal(result.Payload, &response)
 	if err != nil {
-		fmt.Println("Error unmarshalling response...")
-		fmt.Println(err.Error())
 		return err, &vegeta.Metrics{}
 	}
 

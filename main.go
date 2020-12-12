@@ -2,13 +2,13 @@ package main
 
 import (
 	"flag"
-	"os"
-	dsDeploy "github.com/djmgit/DeathStar/deathstardeploy"
 	"github.com/aws/aws-lambda-go/lambda"
+	dsDeploy "github.com/djmgit/DeathStar/deathstardeploy"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
-	vegeta "github.com/tsenart/vegeta/v12/lib"
 	"github.com/rs/zerolog"
+	vegeta "github.com/tsenart/vegeta/v12/lib"
+	"os"
 	"time"
 )
 

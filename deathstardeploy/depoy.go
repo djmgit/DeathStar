@@ -56,7 +56,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		// donwload zipfile and set zip file path in zipFilePath
 	}
 
-	fmt.Println("Creating the lambda attack function...")
+	deathStarDeploy.DeathLogger.Info().Msg("Creating the lambda attack function...")
 	lambdaUtil := lambdautil.LambdaUtil {
 		AWSRegion: "us-east-1",
 		LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
@@ -71,14 +71,14 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		return err
 	}
 
-	fmt.Println("Function creation succeeded...")
+	deathStarDeploy.DeathLogger.Info().Msg("Function creation succeeded...")
 
 	// initiate attack and display result
 	vegAttackUtil := vegetaUtil.VegetaAttackUtils{
 		LmUtil: &lambdaUtil,
 	}
 
-	fmt.Println("Running attack...")
+	deathStarDeploy.DeathLogger.Info().Msg("Running attack")
 	err, resultMetrics := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks)
 
 	fmt.Println("Attack complete...")
@@ -90,7 +90,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		fmt.Println(result.Success)
 	}
 
-	fmt.Println("Cleaning up function...")
+	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")
 	err = lambdaUtil.DeleteFunction()
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Faced error while deleting function")

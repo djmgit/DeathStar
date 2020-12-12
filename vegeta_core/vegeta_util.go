@@ -1,10 +1,10 @@
 package vegeta_core
 
 import (
+	models "github.com/djmgit/DeathStar/models"
+	vegeta "github.com/tsenart/vegeta/v12/lib"
 	//"fmt"
 	"time"
-	vegeta "github.com/tsenart/vegeta/v12/lib"
-	models "github.com/djmgit/DeathStar/models"
 )
 
 type VegetaUtil struct {

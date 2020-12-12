@@ -56,14 +56,37 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		// donwload zipfile and set zip file path in zipFilePath
 	}
 
+	lambdaConfig := deathStarDeploy.yamlConfig.LambdaConfig
+
+	// set defaults for config values
+	LambdaRegion := "us-east-1"
+	LambdaMemorySize := int64(128)
+	LambdaTimeOut := int64(3)
+	LambdaName := "death-star-lambda"
+
+	// get config values from the yaml
+	if lambdaConfig.LambdaRegion != "" {
+		LambdaRegion = lambdaConfig.LambdaRegion
+	}
+
+	if lambdaConfig.LambdaMemorySize != 0 {
+		LambdaMemorySize = lambdaConfig.LambdaMemorySize
+	}
+
+	if lambdaConfig.LambdaTimeOut != 0 {
+		LambdaTimeOut = lambdaConfig.LambdaTimeOut
+	}
+
 	deathStarDeploy.DeathLogger.Info().Msg("Creating the lambda attack function...")
 	lambdaUtil := lambdautil.LambdaUtil {
-		AWSRegion: "us-east-1",
+		AWSRegion: LambdaRegion,
 		LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
-		LambdaFuncName: "func-test-2",
+		LambdaFuncName: LambdaName,
 		LambdaFunctionHandler: "main",
 		LambdaFunctionRuntime: "go1.x",
 		ZipFilePath: deathStarDeploy.ZipFilePath,
+		LambdaMemorySize: LambdaMemorySize,
+		LambdaTimeOut: LambdaTimeOut,
 	}
 	err = lambdaUtil.CreateFunction()
 	if err != nil {

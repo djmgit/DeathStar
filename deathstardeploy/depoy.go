@@ -107,15 +107,15 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	}
 
 	deathStarDeploy.DeathLogger.Info().Msg("Running attack")
-	err, resultMetrics := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks)
+	err, lambdaResponses := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks)
 
 	fmt.Println("Attack complete...")
-	for _, result := range resultMetrics {
-		fmt.Println(result.Latencies.Mean)
+	for _, lamdaResponse := range lambdaResponses {
+		fmt.Println(lamdaResponse.ResultMetrics.Latencies.Mean)
 		fmt.Println("\n")
-		fmt.Println(result.Duration)
+		fmt.Println(lamdaResponse.ResultMetrics.Duration)
 		fmt.Println("\n")
-		fmt.Println(result.Success)
+		fmt.Println(lamdaResponse.ResultMetrics.Success)
 	}
 
 	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")

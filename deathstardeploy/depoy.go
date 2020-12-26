@@ -122,7 +122,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		fmt.Println("\n")
 	}
 
-	data, _ := json.Marshal(lambdaResponses)
+	data, _ := json.MarshalIndent(lambdaResponses, "", "	")
 	fmt.Println(string(data))
 
 	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")

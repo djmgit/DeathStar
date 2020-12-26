@@ -1,6 +1,7 @@
 package deathstardeploy
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/djmgit/DeathStar/lambdautil"
 	vegetaModels "github.com/djmgit/DeathStar/models"
@@ -120,6 +121,9 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		fmt.Println(lambdaResponse.ResultMetrics.Success)
 		fmt.Println("\n")
 	}
+
+	data, _ := json.Marshal(lambdaResponses)
+	fmt.Println(string(data))
 
 	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")
 	err = lambdaUtil.DeleteFunction()

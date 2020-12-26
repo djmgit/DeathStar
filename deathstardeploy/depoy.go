@@ -85,7 +85,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	deathStarDeploy.DeathLogger.Info().Msg("Creating the lambda attack function...")
 	lambdaUtil := lambdautil.LambdaUtil {
 		AWSRegion: LambdaRegion,
-		LambdaRole: "arn:aws:iam::253708721073:role/service-role/func-test-1-role-nyalwdp2",
+		LambdaRole: lambdaConfig.LambdaRole,
 		LambdaFuncName: LambdaName,
 		LambdaFunctionHandler: "main",
 		LambdaFunctionRuntime: "go1.x",

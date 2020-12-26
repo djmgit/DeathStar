@@ -10,9 +10,10 @@ type VegetaAttackUtils struct {
 	LmUtil *lambdautil.LambdaUtil
 }
 
-func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest) (error, []*vegeta.Metrics) {
+func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest) (error, []vegetaModels.LambdaResponse) {
 
 	var resultMetrics []*vegeta.Metrics
+	var lambdaResponses []vegetaModels.LambdaResponse
 
 	for _, attackConfig := range attackConfigs {
 
@@ -20,8 +21,12 @@ func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.L
 		err, attackResult := vegUtil.LmUtil.RunFunction(attackConfig)
 		if err == nil {
 			resultMetrics = append(resultMetrics, attackResult)
+			lambdaResponses = append(lambdaResponses, vegetaModels.LambdaResponse{
+				ResultMetrics: attackResult,
+				AttackDetails: attackConfig,
+			})
 		}
 	}
 
-	return nil, resultMetrics
+	return nil, lambdaResponses
 }

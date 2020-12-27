@@ -3,6 +3,7 @@ package vegeta_core
 import (
 	"github.com/djmgit/DeathStar/lambdautil"
 	vegetaModels "github.com/djmgit/DeathStar/models"
+	"github.com/rs/zerolog"
 	vegeta "github.com/tsenart/vegeta/v12/lib"
 )
 
@@ -10,10 +11,11 @@ type VegetaAttackUtils struct {
 	LmUtil *lambdautil.LambdaUtil
 }
 
-func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest) (error, []vegetaModels.LambdaResponse) {
+func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest, deathLogger zerolog.Logger) (error, []vegetaModels.LambdaResponse) {
 
 	var resultMetrics []*vegeta.Metrics
 	var lambdaResponses []vegetaModels.LambdaResponse
+	noFailures := true
 
 	for _, attackConfig := range attackConfigs {
 
@@ -25,7 +27,14 @@ func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.L
 				ResultMetrics: attackResult,
 				AttackDetails: attackConfig,
 			})
+		} else {
+			deathLogger.Error().Msg(err.Error())
+			noFailures = false
 		}
+	}
+
+	if !noFailures {
+		deathLogger.Info().Msg("One or more attacks could not be carried out successfully, please check logs!")
 	}
 
 	return nil, lambdaResponses

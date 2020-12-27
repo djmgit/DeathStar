@@ -108,7 +108,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	}
 
 	deathStarDeploy.DeathLogger.Info().Msg("Running attack")
-	err, lambdaResponses := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks)
+	err, lambdaResponses := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks, deathStarDeploy.DeathLogger)
 	deathStarDeploy.DeathLogger.Info().Msg("Attack complete")
 
 	data, _ := json.MarshalIndent(lambdaResponses, "", "	")

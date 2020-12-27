@@ -109,18 +109,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 
 	deathStarDeploy.DeathLogger.Info().Msg("Running attack")
 	err, lambdaResponses := vegAttackUtil.VegetaSeqAttack(deathStarDeploy.yamlConfig.Attacks)
-
 	deathStarDeploy.DeathLogger.Info().Msg("Attack complete")
-	for _, lambdaResponse := range lambdaResponses {
-		fmt.Println("Result for " + lambdaResponse.AttackDetails.AttackName + "\n")
-		fmt.Println("Url : " + lambdaResponse.AttackDetails.VegetaParams.Url + "\n")
-		fmt.Println(lambdaResponse.ResultMetrics.Latencies.Mean)
-		fmt.Println("\n")
-		fmt.Println(lambdaResponse.ResultMetrics.Duration)
-		fmt.Println("\n")
-		fmt.Println(lambdaResponse.ResultMetrics.Success)
-		fmt.Println("\n")
-	}
 
 	data, _ := json.MarshalIndent(lambdaResponses, "", "	")
 	fmt.Println(string(data))

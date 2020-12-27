@@ -19,7 +19,7 @@ func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.L
 
 	for _, attackConfig := range attackConfigs {
 
-		// conduct attact for the given request
+		// conduct attack for the given request
 		err, attackResult := vegUtil.LmUtil.RunFunction(attackConfig)
 		if err == nil {
 			resultMetrics = append(resultMetrics, attackResult)

@@ -95,5 +95,4 @@ func main() {
 
 	// Fucntion is running in lambda, invoke handler
 	lambda.Start(HandleLambdaEvent)
-
 }

@@ -1,3 +1,11 @@
+
+// deathstardeploy package contains neccassary functions required
+// to orchestrate the attack by reading the conf file.
+// This mostly includes:
+//	- reading the conf file, figure out the lambda function configs and the alert configs.
+//	- Create the lambda function
+// 	- Invoke the function to carry out the attack
+//	- Clean up the created lambda function
 package deathstardeploy
 
 import (
@@ -12,6 +20,7 @@ import (
 	"time"
 )
 
+// DeathStarDeploy holds various deploy related attributes and methods.
 type DeathStarDeploy struct {
 	ZipFilePath string
 	ConfPath string
@@ -20,7 +29,7 @@ type DeathStarDeploy struct {
 	DeathLogger zerolog.Logger
 }
 
-// function to read config yaml
+// readConfYaml reads the provided yaml config file.
 func (deathStarDeploy *DeathStarDeploy) readConfYaml() (error) {
 
 	yamlFile, err := ioutil.ReadFile(deathStarDeploy.ConfPath)
@@ -40,13 +49,14 @@ func (deathStarDeploy *DeathStarDeploy) readConfYaml() (error) {
 	return nil
 }
 
+// Start function is expected to start with the flow and carry it out till the end
 func (deathStarDeploy *DeathStarDeploy) Start() error {
 
 	err := deathStarDeploy.readConfYaml()
 	if err != nil {
 		return err
 	}
-
+	
 	if deathStarDeploy.LocalZip == true {
 
 		// check zip-file-path is present or not

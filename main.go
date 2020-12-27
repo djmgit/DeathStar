@@ -12,18 +12,23 @@ import (
 	"time"
 )
 
-// handler for lambda
+// HandleLambdaEvent is the main lambda function handler called
+// by the aws lambda Go SDK's lambda.Start() function. We pass this handler
+// as a argument to the lambda.Start() function
 func HandleLambdaEvent(event vegetaModels.LambdaRequest) (vegeta.Metrics, error) {
 
 	vegetaAttacker := vegetaUtil.VegetaUtil {
 		VegetaParams: event.VegetaParams,
 	}
 
+	// Start vegeta attack
 	_, metrics := vegetaAttacker.EngageVegeta()
 
 	return metrics, nil
 }
 
+// setupLogging sets up and returns the logger used by other
+// parts in the codebase
 func setupLogging(loglevel string) zerolog.Logger {
 
 	LOGLEVELS := map[string]zerolog.Level{
@@ -62,6 +67,15 @@ func main() {
 
 	deathlogger := setupLogging(loglevel)
 
+	// DeathStar can be invoked in two situations
+	// - It needs to perform an attack, in that case we simply have to invoke
+	//   lambda.Start() method and rest the handler will take care. This basically means
+	//   we are inside the lambda and we are running on AWS.
+	// - Second, when death star is being invoked as a CLI tool for launching an end to end attack, that is,
+	//   reading the provided config, creating the lambda function, invoking the lambda function for carying out
+	//   the attack, and lastly cleaning up the lambda function.
+	// For carrying out these two conditions, we check the deploy variable. If its true, then we follow the end to end flow,
+	// create function, carry out attack, and do cleanup. If deploy variable is false then we let the handler to its job.
 	if deploy == true {
 		dsDeployHandler := dsDeploy.DeathStarDeploy {
 			ZipFilePath: zipFilePath,

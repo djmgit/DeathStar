@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func Packager(deathLogger zerolog.Logger) {
+func Packager(deathLogger zerolog.Logger) string {
 	executablePath, _ := os.Executable()
 	dirPath := filepath.Dir(executablePath)
 
@@ -25,6 +25,8 @@ func Packager(deathLogger zerolog.Logger) {
 	defer zipWriter.Close()
 
 	AddToZipFile(zipWriter, executablePath, deathLogger)
+
+	return zipFilePath
 }
 
 func AddToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Logger) {

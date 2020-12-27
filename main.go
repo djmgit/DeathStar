@@ -90,6 +90,7 @@ func main() {
 			os.Exit(2)
 		}
 
+		deathlogger.Info().Msg("Exiting DeathStar...")
 		os.Exit(0)
 	}
 

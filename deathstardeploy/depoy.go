@@ -135,8 +135,5 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Faced error while deleting function")
 		return err
 	}
-
-	fmt.Println("Exiting DeathStar...")
-
 	return nil
 }

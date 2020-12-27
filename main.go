@@ -93,7 +93,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	// Fucntion is running in lambda, initialte handler
+	// Fucntion is running in lambda, invoke handler
 	lambda.Start(HandleLambdaEvent)
 
 }

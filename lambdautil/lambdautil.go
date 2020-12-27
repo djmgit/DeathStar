@@ -1,3 +1,5 @@
+
+// lambdautil package contains methods for interacting with AWS lambda funtion.
 package lambdautil
 
 import (
@@ -12,6 +14,8 @@ import (
 	"io/ioutil"
 )
 
+// LambdaUtil contains attributes and functions for interacting with AWS lambda functions
+// It carries out operations like creating lambda functions, executing them and cleaning them.
 type LambdaUtil struct {
 	AWSRegion string `json:"awsRegion"`
 	LambdaRole string `json:"lambdaRole"`
@@ -27,6 +31,7 @@ type LambdaUtil struct {
 	AWSSession *session.Session
 }
 
+// GetAWSSession creates an AWS session for interacting with lambda functions.
 func (lambdaUtil *LambdaUtil) GetAWSSession() (error) {
 
 	// create the aws session and set it as struct property
@@ -51,6 +56,7 @@ func (lambdaUtil *LambdaUtil) GetAWSSession() (error) {
 	return nil
 }
 
+// CreateFunction is used for creating the lambda function with the desired configs.
 func (lambdaUtil *LambdaUtil) CreateFunction() error {
 
 	// create the lambda function using the provided informations
@@ -91,9 +97,10 @@ func (lambdaUtil *LambdaUtil) CreateFunction() error {
 	return nil
 }
 
+// RunFunction invokes the created lambda function.
 func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaRequest) (error, *vegeta.Metrics) {
 
-	// create the lambda function using the provided informations
+	// create AWS session using the provided informations.
 	if lambdaUtil.AWSSession == nil {
 		err := lambdaUtil.GetAWSSession()
 		if err != nil {
@@ -123,6 +130,7 @@ func (lambdaUtil *LambdaUtil) RunFunction(lambdaRequest vegetaModels.LambdaReque
 	return nil, &response
 }
 
+// DeleteFunction deletes the created lambda function.
 func (lambdaUtil *LambdaUtil) DeleteFunction() error {
 
 	// create the lambda function using the provided informations

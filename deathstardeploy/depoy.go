@@ -56,7 +56,11 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	if err != nil {
 		return err
 	}
-	
+
+	// This is important! In order to create a lambda function we have to provide the
+	// zip file containing the handler code. In our case, DeathStar itself is the handler.
+	// Depending on the value of the deploy option passed via CLI, we decide whether to call the
+	// lambda handler or not. So basically DeathStar needs to send the zip of itself.
 	if deathStarDeploy.LocalZip == true {
 
 		// check zip-file-path is present or not
@@ -125,6 +129,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	fmt.Println(string(data))
 
 	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")
+	// Clean up the lambda function which we created above to carry out the attack
 	err = lambdaUtil.DeleteFunction()
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Faced error while deleting function")

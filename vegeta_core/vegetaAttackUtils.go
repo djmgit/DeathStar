@@ -11,7 +11,7 @@ type VegetaAttackUtils struct {
 	LmUtil *lambdautil.LambdaUtil
 }
 
-func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest, deathLogger zerolog.Logger) (error, []vegetaModels.LambdaResponse) {
+func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.LambdaRequest, deathLogger zerolog.Logger) []vegetaModels.LambdaResponse {
 
 	var resultMetrics []*vegeta.Metrics
 	var lambdaResponses []vegetaModels.LambdaResponse
@@ -37,5 +37,5 @@ func (vegUtil *VegetaAttackUtils) VegetaSeqAttack(attackConfigs []vegetaModels.L
 		deathLogger.Info().Msg("One or more attacks could not be carried out successfully, please check logs!")
 	}
 
-	return nil, lambdaResponses
+	return lambdaResponses
 }

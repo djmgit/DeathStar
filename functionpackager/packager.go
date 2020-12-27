@@ -49,6 +49,8 @@ func AddToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Lo
 
 	header.Name = fileName
 
+	// Change to deflate to gain better compression
+	// see http://golang.org/pkg/archive/zip/#pkg-constants
 	header.Method = zip.Deflate
 
 	writer, err := zipWriter.CreateHeader(header)

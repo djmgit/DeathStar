@@ -1,3 +1,5 @@
+
+// functionpackager contains methods for packaging our lambda function
 package functionpackager
 
 import (
@@ -8,11 +10,20 @@ import (
 	"path/filepath"
 )
 
+// Packager is the function that will be externally aclled to package
+// our lambda function and return the path to the created zip file
 func Packager(deathLogger zerolog.Logger) string {
+
+	// Get the absolute path to he executable
 	executablePath, _ := os.Executable()
+
+	// The zip file will be created in the same directory where the executable is present
 	dirPath := filepath.Dir(executablePath)
 
 	zipFileName := "lambda_func.zip"
+
+	// Absolute path of the final zip file
+	// this path will be returned once the zip file has beem created
 	zipFilePath := filepath.Join(dirPath, zipFileName)
 
 	zipFile, err := os.Create(zipFilePath)

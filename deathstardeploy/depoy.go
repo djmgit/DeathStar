@@ -62,6 +62,15 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	// zip file containing the handler code. In our case, DeathStar itself is the handler.
 	// Depending on the value of the deploy option passed via CLI, we decide whether to call the
 	// lambda handler or not. So basically DeathStar needs to send the zip of itself.
+	// In order to do so DeathStar provides two options:
+	// - pass the option "local" with the CLI. This means you have a local zip of the DeathStar binary.
+	//   How this zip was created is upto you. The binary (ELF) might have been built from source or downloaded
+	//	 from github. The important part is the binary should be an linux elf or it might not run on AWS.
+	// - If "local" option was not passed, then DeathStar will create a zip of its own binary and pass that
+	//   zip file path while creating the lambda function. This option is easier and cleaner however can be used
+	//   only when DeathStar deployment/attack is being done from a linux machine. This is because for non-linux
+	//   machines like OSX, we will be using the OSX binary for running DeathStar. Hence when DeathStar will be creating
+	//   its own package,that package will contain the OSX binary which will not work on AWS, yeah its sad :(
 	if deathStarDeploy.LocalZip == true {
 
 		// check zip-file-path is present or not
@@ -70,6 +79,8 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 			return err
 		}
 	} else {
+
+		// Let DeathStar package itself and use the zip file created
 		deathStarDeploy.ZipFilePath = packager.Package(deathStarDeploy.DeathLogger)
 	}
 

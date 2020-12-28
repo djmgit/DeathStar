@@ -14,6 +14,7 @@ import (
 	"github.com/djmgit/DeathStar/lambdautil"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
+	packager "github.com/djmgit/DeathStar/functionpackager"
 	"github.com/rs/zerolog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
@@ -69,7 +70,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 			return err
 		}
 	} else {
-		// donwload zipfile and set zip file path in zipFilePath
+		deathStarDeploy.ZipFilePath = packager.Packager(deathStarDeploy.DeathLogger)
 	}
 
 	lambdaConfig := deathStarDeploy.yamlConfig.LambdaConfig

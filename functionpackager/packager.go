@@ -12,7 +12,7 @@ import (
 
 // Packager is the function that will be externally aclled to package
 // our lambda function and return the path to the created zip file
-func Packager(deathLogger zerolog.Logger) string {
+func Package(deathLogger zerolog.Logger) string {
 
 	// Get the absolute path to he executable
 	executablePath, _ := os.Executable()

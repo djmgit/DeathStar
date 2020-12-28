@@ -70,7 +70,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 			return err
 		}
 	} else {
-		deathStarDeploy.ZipFilePath = packager.Packager(deathStarDeploy.DeathLogger)
+		deathStarDeploy.ZipFilePath = packager.Package(deathStarDeploy.DeathLogger)
 	}
 
 	lambdaConfig := deathStarDeploy.yamlConfig.LambdaConfig

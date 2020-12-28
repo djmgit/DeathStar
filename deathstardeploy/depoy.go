@@ -18,6 +18,7 @@ import (
 	"github.com/rs/zerolog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"os"
 	"time"
 )
 
@@ -141,11 +142,19 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	fmt.Println(string(data))
 
 	deathStarDeploy.DeathLogger.Info().Msg("Cleaning up function...")
+
 	// Clean up the lambda function which we created above to carry out the attack
 	err = lambdaUtil.DeleteFunction()
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Faced error while deleting function")
 		return err
+	}
+
+	if !deathStarDeploy.LocalZip {
+		err = os.Remove(deathStarDeploy.ZipFilePath)
+	}
+	if err != nil {
+		deathStarDeploy.DeathLogger.Error().Msg("Failed to remove function package zip file")
 	}
 	return nil
 }

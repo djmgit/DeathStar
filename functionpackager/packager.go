@@ -35,12 +35,12 @@ func Packager(deathLogger zerolog.Logger) string {
 	zipWriter := zip.NewWriter(zipFile)
 	defer zipWriter.Close()
 
-	AddToZipFile(zipWriter, executablePath, deathLogger)
+	addToZipFile(zipWriter, executablePath, deathLogger)
 
 	return zipFilePath
 }
 
-func AddToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Logger) {
+func addToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Logger) {
 	fileName := filepath.Base(filePath)
 
 	fileToZip, err := os.Open(filePath)

@@ -150,6 +150,8 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		return err
 	}
 
+	// If the function package zip file was created by us then we have to clean it up
+	// at the end of the attack.
 	if !deathStarDeploy.LocalZip {
 		err = os.Remove(deathStarDeploy.ZipFilePath)
 	}

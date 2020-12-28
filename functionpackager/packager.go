@@ -73,4 +73,3 @@ func addToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Lo
 		deathLogger.Fatal().Msg(err.Error())
 	}
 }
-

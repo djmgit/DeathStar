@@ -84,11 +84,7 @@ func main() {
 			DeathLogger: deathlogger,
 		}
 
-		err := dsDeployHandler.Start()
-
-		if err != nil {
-			os.Exit(2)
-		}
+		dsDeployHandler.Start()
 
 		deathlogger.Info().Msg("Exiting DeathStar...")
 		os.Exit(0)

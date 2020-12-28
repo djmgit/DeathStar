@@ -32,32 +32,26 @@ type DeathStarDeploy struct {
 }
 
 // readConfYaml reads the provided yaml config file.
-func (deathStarDeploy *DeathStarDeploy) readConfYaml() (error) {
+func (deathStarDeploy *DeathStarDeploy) readConfYaml() {
 
 	yamlFile, err := ioutil.ReadFile(deathStarDeploy.ConfPath)
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Cannot read config")
-		return err
 	}
 
 	var yamlConfig vegetaModels.YAMLConfig
 	err = yaml.Unmarshal(yamlFile, &yamlConfig)
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Cannot parse yaml config")
-		return err
 	}
 
 	deathStarDeploy.yamlConfig = &yamlConfig
-	return nil
 }
 
 // Start function is expected to start with the flow and carry it out till the end
-func (deathStarDeploy *DeathStarDeploy) Start() error {
+func (deathStarDeploy *DeathStarDeploy) Start() {
 
-	err := deathStarDeploy.readConfYaml()
-	if err != nil {
-		return err
-	}
+	deathStarDeploy.readConfYaml()
 
 	// This is important! In order to create a lambda function we have to provide the
 	// zip file containing the handler code. In our case, DeathStar itself is the handler.
@@ -76,8 +70,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 
 		// check zip-file-path is present or not
 		if deathStarDeploy.ZipFilePath == "" {
-			deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Code zip file not provided")
-			return err
+			deathStarDeploy.DeathLogger.Fatal().Msg("Code zip file not provided")
 		}
 	} else {
 
@@ -121,10 +114,9 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		LambdaMemorySize: LambdaMemorySize,
 		LambdaTimeOut: LambdaTimeOut,
 	}
-	err = lambdaUtil.CreateFunction()
+	err := lambdaUtil.CreateFunction()
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Function creation failed")
-		return err
 	}
 
 	deathStarDeploy.DeathLogger.Info().Msg("Function creation succeeded...")
@@ -147,7 +139,6 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 	err = lambdaUtil.DeleteFunction()
 	if err != nil {
 		deathStarDeploy.DeathLogger.Fatal().Err(err).Msg("Faced error while deleting function")
-		return err
 	}
 
 	// If the function package zip file was created by us then we have to clean it up
@@ -156,7 +147,6 @@ func (deathStarDeploy *DeathStarDeploy) Start() error {
 		err = os.Remove(deathStarDeploy.ZipFilePath)
 	}
 	if err != nil {
-		deathStarDeploy.DeathLogger.Error().Msg("Failed to remove function package zip file")
+		deathStarDeploy.DeathLogger.Error().Err(err).Msg("Failed to remove function package zip file")
 	}
-	return nil
 }

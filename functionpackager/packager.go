@@ -28,7 +28,7 @@ func Package(deathLogger zerolog.Logger) string {
 
 	zipFile, err := os.Create(zipFilePath)
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 	defer zipFile.Close()
 
@@ -45,17 +45,17 @@ func addToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Lo
 
 	fileToZip, err := os.Open(filePath)
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 
 	info, err := fileToZip.Stat()
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 
 	header, err := zip.FileInfoHeader(info)
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 
 	header.Name = fileName
@@ -66,10 +66,10 @@ func addToZipFile(zipWriter *zip.Writer, filePath string, deathLogger zerolog.Lo
 
 	writer, err := zipWriter.CreateHeader(header)
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 	_, err = io.Copy(writer, fileToZip)
 	if err != nil {
-		deathLogger.Fatal().Msg(err.Error())
+		deathLogger.Fatal().Err(err).Msg(err.Error())
 	}
 }

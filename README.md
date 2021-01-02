@@ -15,3 +15,9 @@ When working on or with web based services or APIs, performance testing of the s
 Above are some of the unknowns which a developer or an operations engineer should try to find out about the web service they are working on. Also not to
 mention, with the advent of chaos engineering, we might want to artificially inject sudden large load into our web service to find out how our application
 behaves in different situations like this.
+
+There are several opensource tools present which allow us to loadtest applications by running them from command line or from UI. However the issue is, to carry
+out such attacks or loadtests, we require the necessary infrastructure from where we can run a given loadtest tool. Also once we are done with our testing,
+we would not want our loadtest servers from where our tools were run, to be lying around idle, that would be a waste of resource.
+Also running such loadtest tools on shared servers which are already running some application can be risky as loadtest tools take up some resources and
+that can affect the already running application.

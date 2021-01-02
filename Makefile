@@ -37,7 +37,7 @@ install:
 		@echo "installed DeathStar"
 
 lambda_package:
-		@zip $(DIST_DIR)/$(LAMBDA_PACKAGE) $(DIST_DIR)/$(BINARY_NAME)
+		@zip $(LAMBDA_PACKAGE) $(DIST_DIR)/$(BINARY_NAME)
 
 uninstall:
 		@rm -f $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)

@@ -29,3 +29,21 @@ automate the same.
 
 Coming back to DeathStar, it is not only a tool which can carry out loadtest and provide necessary data but it also takes care of infrastructure provisioning can
 cleanup by itself. All you have to do is provide config details so that it can orchestrate a successful test.
+
+## What exactly does DeathStar do and how does it do
+
+``` 
+Before I countinue further, I would like to mention that although deathstar is usable, it is still under development and features are being added. Currently it
+only supports AWS lambda as a compute backend. 
+```
+DeathStar takes a configuration file, provisions a lambda function along with the handler, orchestrates the loadtest on the configured targets, displays the
+recoreded metrics and finally cleans up the lambda function, thereby allowing you to carry out your loadtest in a fully automated and serverless manner.
+
+
+
+
+
+
+
+
+

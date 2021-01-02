@@ -9,6 +9,8 @@ DIST_DIR=dist
 CONF_DIR=conf
 prefix=/usr
 
+.PHONY: all build clean install uninstall build_linux prepare_linux
+
 all: build
 
 build:	clean
@@ -17,6 +19,11 @@ build:	clean
 		$(GOBUILD) -o $(DIST_DIR)/$(BINARY_NAME) .
 		@echo "build successful"
 		@echo "DeathStar binary can be found inside ${DIST_DIR}"
+
+prepare_linux:
+		@export GOOS=linux
+
+build_linux: prepare_linux build
 
 clean:
 		$(GOCLEAN)
@@ -33,5 +40,3 @@ uninstall:
 
 doc:
 		@$(GODOC) -http=:6060
-
-.PHONY: all build clean install uninstall

@@ -22,6 +22,7 @@ build:	clean
 		@echo "DeathStar binary can be found inside ${DIST_DIR}"
 
 prepare_linux:
+		@echo "preparing for linux build..."
 		@export GOOS=linux
 
 build_linux: prepare_linux build

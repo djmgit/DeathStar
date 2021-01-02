@@ -52,6 +52,10 @@ and is being used by DeathStar.
 DeathStar is written in golang and uses YAML configurations. In the next sections I will be talking more about how to setup DeathStar, configure it and carry out
 your loadtest.
 
+DeathStar has been tested on **Linux** environment. However it can also be trigerred from **macOS** in case if someone wants to kickstart a test from his or her 
+local mac system. The procedure for running it on macOS is however different from that on Linux. I will be discussing about this as well in later sections for this
+documentation.
+
 
 
 

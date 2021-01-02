@@ -4,4 +4,8 @@ DeathStar is a tool to loadtest web based services and rest APIs in a easy, auto
 
 ## What is the need to such a tool
 
-???
+When working on or with web based services or APIs, performance testing of the service is extremely important. It gives us an idea some of the following unknowns
+
+- How much traffic (qps) can your application serve at peak hour. What is the qps at which your application breaks.
+- How does incoming load affects the resources consumed by your application. Is it memory intensive or processor intensive.
+- What is the right resource consumption level at which you should consider autoscaling? Do you need autoscaling at all?

@@ -20,6 +20,7 @@ import (
 	"io/ioutil"
 	"os"
 	"time"
+	"path/filepath"
 )
 
 // DeathStarDeploy holds various deploy related attributes and methods.
@@ -85,6 +86,9 @@ func (deathStarDeploy *DeathStarDeploy) Start() {
 	LambdaMemorySize := int64(128)
 	LambdaTimeOut := int64(3)
 
+	// get the lambda handler name, it should be the name of this binary
+	lambdaFunctionHandler := filepath.Base(os.Args[0])
+
 	// generate the function name
 	currentTime := time.Now()
 	formattedDateTime := currentTime.Format("01-02-2006T15-04-05")
@@ -108,7 +112,7 @@ func (deathStarDeploy *DeathStarDeploy) Start() {
 		AWSRegion: LambdaRegion,
 		LambdaRole: lambdaConfig.LambdaRole,
 		LambdaFuncName: LambdaName,
-		LambdaFunctionHandler: "main",
+		LambdaFunctionHandler: lambdaFunctionHandler,
 		LambdaFunctionRuntime: "go1.x",
 		ZipFilePath: deathStarDeploy.ZipFilePath,
 		LambdaMemorySize: LambdaMemorySize,

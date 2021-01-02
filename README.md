@@ -37,7 +37,20 @@ Before I countinue further, I would like to mention that although deathstar is u
 only supports AWS lambda as a compute backend. 
 ```
 DeathStar takes a configuration file, provisions a lambda function along with the handler, orchestrates the loadtest on the configured targets, displays the
-recoreded metrics and finally cleans up the lambda function, thereby allowing you to carry out your loadtest in a fully automated and serverless manner.
+recorded metrics and finally cleans up the lambda function, thereby allowing you to carry out your loadtest in a fully automated and serverless manner.
+
+In the config file you can mention multiple targets and for each target you can provide the attack configurations like what should be the rate of the attack, that
+is, what should be the traffic qps, what is the endpoint that DeathStar will be hitting with the mentioned qps, what should be the HTTP method (right now it only
+supports GET, but will support other methods along with body and url parameters in future) and for how long will the test be continued. It rquires some other
+details as well like the lambda memory size to be allocated, timeout, aws region etc, more on in subsequent sections.
+DeathStar will parse the config, accordingly create a lambda fucntion, invoke the lambda function for carrying out the attack and finally will destroy the lambda
+function. 
+This would be a nice time to mention that DeathStar uses <a href="https://github.com/LazyWolves/"> Vegeta </a> under the hood to create the load. Vegeta
+is a command line tool which allows you to generate load and hit a given web service endpoint. It also provides a library interface which is really awesome
+and is being used by DeathStar.
+
+DeathStar is written in golang and uses YAML configurations. In the next sections I will be talking more about how to setup DeathStar, configure it and carry out
+your loadtest.
 
 
 

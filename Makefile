@@ -38,7 +38,8 @@ install:
 
 lambda_package:
 		@echo "Create lambda zip package"
-		@zip $(LAMBDA_PACKAGE) $(DIST_DIR)/$(BINARY_NAME)
+		cd $(DIST_DIR); zip $(LAMBDA_PACKAGE) $(BINARY_NAME)
+		@mv $(DIST_DIR)/$(LAMBDA_PACKAGE) ./
 
 uninstall:
 		@rm -f $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)

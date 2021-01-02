@@ -37,6 +37,7 @@ install:
 		@echo "installed DeathStar"
 
 lambda_package:
+		@echo "Create lambda zip package"
 		@zip $(LAMBDA_PACKAGE) $(DIST_DIR)/$(BINARY_NAME)
 
 uninstall:

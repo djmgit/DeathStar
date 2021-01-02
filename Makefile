@@ -5,6 +5,7 @@ GORUN=$(GOCMD) run
 GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 BINARY_NAME=deathstar
+LAMBDA_PACKAGE=deathstar.zip
 DIST_DIR=dist
 CONF_DIR=conf
 prefix=/usr
@@ -33,6 +34,9 @@ clean:
 install:
 		@install -D $(DIST_DIR)/$(BINARY_NAME) $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)
 		@echo "installed DeathStar"
+
+lambda_package:
+		@zip $(DIST_DIR)/$(LAMBDA_PACKAGE) $(DIST_DIR)/$(BINARY_NAME)
 
 uninstall:
 		@rm -f $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)

@@ -373,3 +373,5 @@ The lambdaConfig yaml object keys takes parameters to configure the lambda funct
   want to tweak this value depending on the scale of our attack. The vCPUs allocated by AWS to a lambda function is proportional to the memory it is allocated.
   So if you want to generate higher load on your target then you will be requiring higher resources - memory and CPU. So you migth want to increase the memory
   limit of the lambda function.
+  
+- lambdaTimeOut: This specifies the timeout for the lambda fucntion. It expects an integer and the unit is second.

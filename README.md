@@ -87,9 +87,20 @@ and for permission you can use - ```arn:aws:iam::aws:policy/service-role/AWSLamb
 In subsequent releases, the role creation will be automated so that DeathStar can create the role for itself and then destroy the role once test is done. However as
 of now its manual.
 
-** Setting up DeathStar**
+**Setting up DeathStar**
 
 DeathStar can be setup on your system/pipeline in either of the two ways. Either you can download pre-built binaries from github or you can build it yourself.
+
+**Using the pre-built sources**
+
+You can setup DeathStar from prebuilt binary using the following steps:
+
+- Download the package : ```wget <url>```
+- Decompress the package : ```unzip <package>```
+- Optionally you can copy it to your path like ```/usr/local/bin```
+- Check out the binary ```./deathstar -help```
+
+
 
 
 

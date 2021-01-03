@@ -350,3 +350,7 @@ definitions. This list basically contains various targets to attack and details 
 
 - attackName: This is just an identifier for a givenm attack. It is suggested to use some meaningful identifier so that you can easily identify your attack target.
 
+- attackDesc: A short description about the attack.
+
+- vegetaAttackParams: These are parameters/options which describes your attack as well as are required by vegeta to carry out the attack.
+

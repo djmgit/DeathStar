@@ -369,4 +369,7 @@ The lambdaConfig yaml object keys takes parameters to configure the lambda funct
 
 - lambdaRole: This is the ARN of the AWS role to be used by the lambda function. This role must be created before using DeathStar.
 
-- lambdaMemorySize: The size of the lambda function. This takes integer and the unit is in Mega Byte. Default value considered by lambda is 128MB.
+- lambdaMemorySize: The size of the lambda function. This takes integer and the unit is in Mega Byte. Default value considered by lambda is 128MB. We might
+  want to tweak this value depending on the scale of our attack. The vCPUs allocated by AWS to a lambda function is proportional to the memory it is allocated.
+  So if you want to generate higher load on your target then you will be requiring higher resources - memory and CPU. So you migth want to increase the memory
+  limit of the lambda function.

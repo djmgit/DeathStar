@@ -60,11 +60,30 @@ documentation.
 
 In this section we will see how to configure DeathStar and get started with it.
 
-**Prerequisite
+**Prerequisite**
 
 You must have an active AWS account and the AWS CLI credentials set up in the environment from where you want to trigger DeathStar. This basically means the AWS
 creds - ```aws_access_key_id``` and ```aws_secret_access_key``` should be setup either in ```.aws/credentials``` or as envronment variables. Right now DeathStar
 does not provide the option to pass these credentials via config file. It might do in future.
+Also, you will be requireing a AWS role for your lambda function. Nothing special is required, its just the usual IAM role that the lambda function will assume so
+the it has access to AWS resources. You can find more about it <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html"> here </a>.
+In short you can give the following trust policy
+
+```
+{
+  "Version": "",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+and for permission you can use - ```arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole``` so that the lambda function can upload logs to CloudWatch.
 
 
 

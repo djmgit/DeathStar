@@ -56,6 +56,16 @@ DeathStar has been tested on **Linux** environment. However it can also be trige
 local mac system. The procedure for running it on macOS is however different from that on Linux. I will be discussing about this as well in later sections for this
 documentation.
 
+### QuickStart
+
+In this section we will see how to configure DeathStar and get started with it.
+
+**Prerequisite
+
+You must have an active AWS account and the AWS CLI credentials set up in the environment from where you want to trigger DeathStar. This basically means the AWS
+creds - ```aws_access_key_id``` and ```aws_secret_access_key``` should be setup either in ```.aws/credentials``` or as envronment variables. Right now DeathStar
+does not provide the option to pass these credentials via config file. It might do in future.
+
 
 
 

@@ -378,3 +378,5 @@ The lambdaConfig yaml object keys takes parameters to configure the lambda funct
   will run. After the specified time period is over, the instance of the invoked function will be killed by AWS lambda. The value has a hard limit of 900, which is
   15 minute. Unfortunately this is a limitation. However if you want to attack a target for than 15 minute, you can create two attack definitions with the same
   target or invoke DeathStar again.
+  
+- lambdaRegion: This is simply the AWS region where you want DeathStar to spawn the function.

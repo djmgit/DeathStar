@@ -27,11 +27,14 @@ clean:
 		@rm -rf $(DIST_DIR)
 		@echo "build cleaned"
 
+lambda_clean:
+		@rm $(LAMBDA_PACKAGE)
+
 install:
 		@install -D $(DIST_DIR)/$(BINARY_NAME) $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)
 		@echo "installed DeathStar"
 
-lambda_package:
+lambda_package: lambda_clean
 		@echo "Create lambda zip package"
 		cd $(DIST_DIR); zip $(LAMBDA_PACKAGE) $(BINARY_NAME)
 		@mv $(DIST_DIR)/$(LAMBDA_PACKAGE) ./

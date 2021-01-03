@@ -173,6 +173,9 @@ back the result and display it to the user in json format and finally destroy th
 Example output:
 
 ```
+
+Note: all duration like fields are in nanoseconds
+
 [
 	{
 		"AttackResponseMetrics": {
@@ -312,7 +315,9 @@ Example output:
 ]
 ```
 
-
+The output shows various metrics measured by vegeta like mean latency, success ratio, status codes etc. Thus, we carried out a succesful loadtest without spending
+much time on the infrastructure side much. However as it was mentioned before, DeathStar does have some limitations and pitfalls, which I will be discussing about
+in the future scope and limitations section.
 
 
 

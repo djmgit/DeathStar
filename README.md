@@ -115,6 +115,12 @@ For building DeathStar uses GNU make.
 
 Now that DeathStar is setup we are ready for performing our first loadtest.
 
+As mentioned already, DeathStar expects a single yaml configuration file in which the user will have to provide details about the targets to be attacked.
+The user will basically have to provide a list of targets and some options related to them. Apart from target details user must provide some infrastructure
+related config options. Lets see a sample config file for orchestrating an attack.
+
+
+
 
 
 

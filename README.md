@@ -356,6 +356,8 @@ definitions. This list basically contains various targets to attack and details 
 
 - url: the web endpont that needs to be loadtested/attacked. Vegeta will bombard this endpoint with requests. This is the target.
 
-- httpMethod: The http method to be used by vegeta while hitting the target. Right now, DeathStar only allows GET but more types will be allowed soon.
+- httpMethod: The http method to be used by vegeta while hitting the target. Right now, DeathStar only allows ```GET``` but more types will be allowed soon.
 
+- rate: Number of requests to be made per second. This is basically the qps. This expects an integer.
 
+- duration: Number of seconds for which the attack will be continued. This should not be more than the lambda function timeout.

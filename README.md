@@ -84,7 +84,8 @@ In short you can give the following trust policy
 }
 ```
 and for permission you can use - ```arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole``` so that the lambda function can upload logs to CloudWatch.
-
+In subsequent releases, the role creation will be automated so that DeathStar can create the role for itself and then destroy the role once test is done. However as
+of now its manual.
 
 
 

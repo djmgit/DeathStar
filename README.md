@@ -354,3 +354,8 @@ definitions. This list basically contains various targets to attack and details 
 
 - vegetaAttackParams: These are parameters/options which describes your attack as well as are required by vegeta to carry out the attack.
 
+- url: the web endpont that needs to be loadtested/attacked. Vegeta will bombard this endpoint with requests. This is the target.
+
+- httpMethod: The http method to be used by vegeta while hitting the target. Right now, DeathStar only allows GET but more types will be allowed soon.
+
+

@@ -28,7 +28,7 @@ clean:
 		@echo "build cleaned"
 
 lambda_clean:
-		@rm $(LAMBDA_PACKAGE)
+		@rm -f $(LAMBDA_PACKAGE)
 
 install:
 		@install -D $(DIST_DIR)/$(BINARY_NAME) $(DESTDIR)$(prefix)/bin/$(BINARY_NAME)

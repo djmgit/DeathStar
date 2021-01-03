@@ -159,6 +159,19 @@ our prerequisite section, we provide the lambda memory size, depending on the at
 the region where where the function will be spawned.
 
 Once we are satisfied with our configuration, we can trigger DeathStar to actually orchestrate the attack.
+In order to run DeathStar, use the following command:
+
+```
+./deathstar -deploy -conf config.yml
+```
+
+The above command will tell DeathStar to deploy the lambda function using the provided config, invoke the deployed lambda function with the attack details. The
+lambda function will then invoke its handler which will inturn invoke vegeta to attack the given targets on after the order. Right now DeathStar only allows
+sequential attack on the targets, in future it will provide attacking targets in parallel as well. Once the lambda execution completes, DeathStar will parse
+back the result and display it to the user in json format and finally destroy the lambda function.
+
+Example output:
+
 
 
 

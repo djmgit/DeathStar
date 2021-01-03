@@ -348,16 +348,16 @@ lambdaConfig:
 the first section or yaml object key is ```attacks```. As the name suggests, this takes a list of attack configurations. You can also refer to this as target
 definitions. This list basically contains various targets to attack and details regarding how to attack, mostly required by vegeta.
 
-- attackName: This is just an identifier for a givenm attack. It is suggested to use some meaningful identifier so that you can easily identify your attack target.
+- **attackName**: This is just an identifier for a givenm attack. It is suggested to use some meaningful identifier so that you can easily identify your attack target.
 
-- attackDesc: A short description about the attack.
+- **attackDesc**: A short description about the attack.
 
-- vegetaAttackParams: These are parameters/options which describes your attack as well as are required by vegeta to carry out the attack.
+- **vegetaAttackParams**: These are parameters/options which describes your attack as well as are required by vegeta to carry out the attack.
 
-- url: the web endpont that needs to be loadtested/attacked. Vegeta will bombard this endpoint with requests. This is the target.
+- **url**: the web endpont that needs to be loadtested/attacked. Vegeta will bombard this endpoint with requests. This is the target.
 
-- httpMethod: The http method to be used by vegeta while hitting the target. Right now, DeathStar only allows ```GET``` but more types will be allowed soon.
+- **httpMethod**: The http method to be used by vegeta while hitting the target. Right now, DeathStar only allows ```GET``` but more types will be allowed soon.
 
-- rate: Number of requests to be made per second. This is basically the qps. This expects an integer.
+- **rate**: Number of requests to be made per second. This is basically the qps. This expects an integer.
 
-- duration: Number of seconds for which the attack will be continued. This should not be more than the lambda function timeout.
+- **duration**: Number of seconds for which the attack will be continued. This should not be more than the lambda function timeout.

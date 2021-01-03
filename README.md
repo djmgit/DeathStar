@@ -45,7 +45,7 @@ supports GET, but will support other methods along with body and url parameters 
 details as well like the lambda memory size to be allocated, timeout, aws region etc, more on in subsequent sections.
 DeathStar will parse the config, accordingly create a lambda fucntion, invoke the lambda function for carrying out the attack and finally will destroy the lambda
 function. 
-This would be a nice time to mention that DeathStar uses <a href="https://github.com/LazyWolves/"> Vegeta </a> under the hood to create the load. Vegeta
+This would be a nice time to mention that DeathStar uses <a href="https://github.com/tsenart/vegeta"> Vegeta </a> under the hood to create the load. Vegeta
 is a command line tool which allows you to generate load and hit a given web service endpoint. It also provides a library interface which is really awesome
 and is being used by DeathStar.
 
@@ -112,6 +112,9 @@ For building DeathStar uses GNU make.
 - Check the built binary using ```./dist/deathstar -help```.
 - To install DeathStar to your path, run ```make install```.
 - This will install deathstar under /usr/bin and you can invoke ```deathstar``` from anywhere.
+
+Now that DeathStar is setup we are ready for performing our first loadtest.
+
 
 
 

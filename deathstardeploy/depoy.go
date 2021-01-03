@@ -11,16 +11,16 @@ package deathstardeploy
 import (
 	"encoding/json"
 	"fmt"
+	packager "github.com/djmgit/DeathStar/functionpackager"
 	"github.com/djmgit/DeathStar/lambdautil"
 	vegetaModels "github.com/djmgit/DeathStar/models"
 	vegetaUtil "github.com/djmgit/DeathStar/vegeta_core"
-	packager "github.com/djmgit/DeathStar/functionpackager"
 	"github.com/rs/zerolog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
-	"time"
 	"path/filepath"
+	"time"
 )
 
 // DeathStarDeploy holds various deploy related attributes and methods.

@@ -8,6 +8,7 @@ BINARY_NAME=deathstar
 LAMBDA_PACKAGE=deathstar.zip
 DIST_DIR=dist
 CONF_DIR=conf
+prepare_for_linux=(export GOOS=linux)
 prefix=/usr
 
 .PHONY: all build clean install uninstall build_linux prepare_linux
@@ -20,12 +21,6 @@ build:	clean
 		$(GOBUILD) -o $(DIST_DIR)/$(BINARY_NAME) .
 		@echo "build successful"
 		@echo "DeathStar binary can be found inside ${DIST_DIR}"
-
-prepare_linux:
-		@echo "preparing for linux build..."
-		@export GOOS=linux
-
-build_linux: prepare_linux build
 
 clean:
 		$(GOCLEAN)

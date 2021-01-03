@@ -7,3 +7,4 @@ main
 death.yml
 main.zip
 dist/
+.DS_Store

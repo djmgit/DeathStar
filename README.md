@@ -367,16 +367,16 @@ definitions. This list basically contains various targets to attack and details 
 
 The lambdaConfig yaml object keys takes parameters to configure the lambda function that will be created and invoked by DeathStar.
 
-- lambdaRole: This is the ARN of the AWS role to be used by the lambda function. This role must be created before using DeathStar.
+- **lambdaRole**: This is the ARN of the AWS role to be used by the lambda function. This role must be created before using DeathStar.
 
-- lambdaMemorySize: The size of the lambda function. This takes integer and the unit is in Mega Byte. Default value considered by lambda is 128MB. We might
+- **lambdaMemorySize**: The size of the lambda function. This takes integer and the unit is in Mega Byte. Default value considered by lambda is 128MB. We might
   want to tweak this value depending on the scale of our attack. The vCPUs allocated by AWS to a lambda function is proportional to the memory it is allocated.
   So if you want to generate higher load on your target then you will be requiring higher resources - memory and CPU. So you migth want to increase the memory
   limit of the lambda function.
   
-- lambdaTimeOut: This specifies the timeout for the lambda fucntion. It expects an integer and the unit is second. This specifies for how much time the function
+- **lambdaTimeOut**: This specifies the timeout for the lambda fucntion. It expects an integer and the unit is second. This specifies for how much time the function
   will run. After the specified time period is over, the instance of the invoked function will be killed by AWS lambda. The value has a hard limit of 900, which is
   15 minute. Unfortunately this is a limitation. However if you want to attack a target for than 15 minute, you can create two attack definitions with the same
   target or invoke DeathStar again.
   
-- lambdaRegion: This is simply the AWS region where you want DeathStar to spawn the function.
+- **lambdaRegion**: This is simply the AWS region where you want DeathStar to spawn the function.

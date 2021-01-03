@@ -321,9 +321,32 @@ in the future scope and limitations section.
 Also you might be wondering where is the lambda function code and handler and why are we providing a CLI option like ```-deploy```. I will be explaining the same
 in the subsequent sections.
 
+## Configuration options : Orchestrating a loadtest
 
+Lets use our previous sample config yaml file to go over the different config options
 
+```
+attacks:
+  - attackName: attack-1
+    attackDesc: Test attack
+    vegetaAttackParams:
+      httpMethod: GET
+      url: "https://url-1.xyz"
+      rate: 2
+      duration: 2
 
+lambdaConfig:
+  lambdaRole: "lambda_role_arn"
+  lambdaMemorySize: 128
+  lambdaTimeOut: 3
+  lambdaRegion: us-east-1
 
+```
 
+**attacks**
+
+the first section or yaml object key is ```attacks```. As the name suggests, this takes a list of attack configurations. You can also refer to this as target
+definitions. This list basically contains various targets to attack and details regarding how to attack, mostly required by vegeta.
+
+- attackName: This is just an identifier for a givenm attack. It is suggested to use some meaningful identifier so that you can easily identify your attack target.
 

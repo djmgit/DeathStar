@@ -361,3 +361,9 @@ definitions. This list basically contains various targets to attack and details 
 - **rate**: Number of requests to be made per second. This is basically the qps. This expects an integer.
 
 - **duration**: Number of seconds for which the attack will be continued. This should not be more than the lambda function timeout.
+
+
+**lambdaConfig**
+
+The lambdaConfig yaml object keys takes parameters to configure the lambda function that will be created and invoked by DeathStar.
+

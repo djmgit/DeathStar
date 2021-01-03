@@ -374,4 +374,7 @@ The lambdaConfig yaml object keys takes parameters to configure the lambda funct
   So if you want to generate higher load on your target then you will be requiring higher resources - memory and CPU. So you migth want to increase the memory
   limit of the lambda function.
   
-- lambdaTimeOut: This specifies the timeout for the lambda fucntion. It expects an integer and the unit is second.
+- lambdaTimeOut: This specifies the timeout for the lambda fucntion. It expects an integer and the unit is second. This specifies for how much time the function
+  will run. After the specified time period is over, the instance of the invoked function will be killed by AWS lambda. The value has a hard limit of 900, which is
+  15 minute. Unfortunately this is a limitation. However if you want to attack a target for than 15 minute, you can create two attack definitions with the same
+  target or invoke DeathStar again.

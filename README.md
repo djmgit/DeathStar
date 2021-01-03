@@ -318,6 +318,8 @@ Note: all duration like fields are in nanoseconds
 The output shows various metrics measured by vegeta like mean latency, success ratio, status codes etc. Thus, we carried out a succesful loadtest without spending
 much time on the infrastructure side much. However as it was mentioned before, DeathStar does have some limitations and pitfalls, which I will be discussing about
 in the future scope and limitations section.
+Also you might be wondering where is the lambda function code and handler and why are we providing a CLI option like ```-deploy```. I will be explaining the same
+in the subsequent sections.
 
 
 

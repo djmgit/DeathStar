@@ -172,7 +172,145 @@ back the result and display it to the user in json format and finally destroy th
 
 Example output:
 
-
+```
+[
+	{
+		"AttackResponseMetrics": {
+			"latencies": {
+				"total": 318595407,
+				"mean": 79648851,
+				"50th": 39478544,
+				"90th": 201993451,
+				"95th": 201993451,
+				"99th": 201993451,
+				"max": 201993451,
+				"min": 37644867
+			},
+			"bytes_in": {
+				"total": 51430,
+				"mean": 12857.5
+			},
+			"bytes_out": {
+				"total": 0,
+				"mean": 0
+			},
+			"earliest": "2021-01-03T06:48:46.940882478Z",
+			"latest": "2021-01-03T06:48:48.440780199Z",
+			"end": "2021-01-03T06:48:48.479866919Z",
+			"duration": 1499897721,
+			"wait": 39086720,
+			"requests": 4,
+			"rate": 2.6668485083990605,
+			"throughput": 2.599116594967577,
+			"success": 1,
+			"status_codes": {
+				"200": 4
+			},
+			"errors": []
+		},
+		"attackDetails": {
+			"attackName": "attack-1",
+			"attackDesc": "Test attack",
+			"vegetaAttackParams": {
+				"httpMethod": "GET",
+				"url": "https://url-1.xyz",
+				"rate": 2,
+				"duration": 2
+			}
+		}
+	},
+	{
+		"AttackResponseMetrics": {
+			"latencies": {
+				"total": 153277127,
+				"mean": 38319281,
+				"50th": 17974179,
+				"90th": 112314614,
+				"95th": 112314614,
+				"99th": 112314614,
+				"max": 112314614,
+				"min": 5014155
+			},
+			"bytes_in": {
+				"total": 506808,
+				"mean": 126702
+			},
+			"bytes_out": {
+				"total": 0,
+				"mean": 0
+			},
+			"earliest": "2021-01-03T06:48:49.205092672Z",
+			"latest": "2021-01-03T06:48:50.705106735Z",
+			"end": "2021-01-03T06:48:50.722270758Z",
+			"duration": 1500014063,
+			"wait": 17164023,
+			"requests": 4,
+			"rate": 2.666641666012167,
+			"throughput": 2.636473619616992,
+			"success": 1,
+			"status_codes": {
+				"200": 4
+			},
+			"errors": []
+		},
+		"attackDetails": {
+			"attackName": "attack-2",
+			"attackDesc": "Test attack2",
+			"vegetaAttackParams": {
+				"httpMethod": "GET",
+				"url": "https://url-2.abc",
+				"rate": 2,
+				"duration": 2
+			}
+		}
+	},
+	{
+		"AttackResponseMetrics": {
+			"latencies": {
+				"total": 852066357,
+				"mean": 213016589,
+				"50th": 221749682,
+				"90th": 292663955,
+				"95th": 292663955,
+				"99th": 292663955,
+				"max": 292663955,
+				"min": 115903038
+			},
+			"bytes_in": {
+				"total": 97152,
+				"mean": 24288
+			},
+			"bytes_out": {
+				"total": 0,
+				"mean": 0
+			},
+			"earliest": "2021-01-03T06:48:51.445086615Z",
+			"latest": "2021-01-03T06:48:52.945171147Z",
+			"end": "2021-01-03T06:48:53.061074185Z",
+			"duration": 1500084532,
+			"wait": 115903038,
+			"requests": 4,
+			"rate": 2.6665163960240075,
+			"throughput": 2.475266564086257,
+			"success": 1,
+			"status_codes": {
+				"200": 4
+			},
+			"errors": []
+		},
+		"attackDetails": {
+			"attackName": "attack-2",
+			"attackDesc": "Test attack2",
+			"vegetaAttackParams": {
+				"httpMethod": "GET",
+				"url": "https://url-3.def",
+				"rate": 2,
+				"duration": 2
+			}
+		}
+	}
+]
+```
 
 
 

@@ -119,7 +119,40 @@ As mentioned already, DeathStar expects a single yaml configuration file in whic
 The user will basically have to provide a list of targets and some options related to them. Apart from target details user must provide some infrastructure
 related config options. Lets see a sample config file for orchestrating an attack.
 
+```
+attacks:
+  - attackName: attack-1
+    attackDesc: Test attack
+    vegetaAttackParams:
+      httpMethod: GET
+      url: "https://url-1.xyz"
+      rate: 2
+      duration: 2
+  - attackName: attack-2
+    attackDesc: Test attack2
+    vegetaAttackParams:
+      httpMethod: GET
+      url: "https://url-2.abc"
+      rate: 2
+      duration: 2
+  - attackName: attack-2
+    attackDesc: Test attack2
+    vegetaAttackParams:
+      httpMethod: GET
+      url: "https://url-3.def"
+      rate: 2
+      duration: 2
 
+lambdaConfig:
+  lambdaRole: "lambda_role_arn"
+  lambdaMemorySize: 128
+  lambdaTimeOut: 3
+  lambdaRegion: us-east-1
+```
+
+In the above config, we are specifying three targets also known as attacks. In each attack definition we provide details like attack name, description,
+attack url, rate (qps) and everything else required by vegeta to carry out the attack on the given target endpoint. I will be mentioning in details about the
+individual attack options in details in the configuration reference section.
 
 
 

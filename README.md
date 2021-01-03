@@ -367,3 +367,6 @@ definitions. This list basically contains various targets to attack and details 
 
 The lambdaConfig yaml object keys takes parameters to configure the lambda function that will be created and invoked by DeathStar.
 
+- lambdaRole: This is the ARN of the AWS role to be used by the lambda function. This role must be created before using DeathStar.
+
+- lambdaMemorySize: The size of the lambda function. This takes integer and the unit is in Mega Byte. Default value considered by lambda is 128MB.

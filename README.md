@@ -153,6 +153,13 @@ lambdaConfig:
 In the above config, we are specifying three targets also known as attacks. In each attack definition we provide details like attack name, description,
 attack url, rate (qps) and everything else required by vegeta to carry out the attack on the given target endpoint. I will be mentioning in details about the
 individual attack options in details in the configuration reference section.
+Once we are done with our target descriptions required to orchestrate our attack, next we need to provide some details about the lambda configuration. These are
+required by DeathStar to spawn the on demand lambda function in the desired manner. We provide configs like the role arn - this is the role which we create in
+our prerequisite section, we provide the lambda memory size, depending on the attack scale we might want to change this. We can also specify the lambda timeout and
+the region where where the function will be spawned.
+
+Once we are satisfied with our configuration, we can trigger DeathStar to actually orchestrate the attack.
+
 
 
 

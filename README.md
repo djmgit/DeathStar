@@ -102,9 +102,16 @@ You can setup DeathStar from prebuilt binary using the following steps:
 
 **Building from source**
 
-You can build DeathStar from source using the following steps
+You can build DeathStar from source using the following steps. However before doing so make sure you have Golang 1.13.11 or above present in your system.
+For building DeathStar uses GNU make.
 
-
+- Download or clone this repository
+- Open terminal and change directory to the project's directory
+- Run ```make build```
+- Your binary should be built and present in ```./dist``` directory present in project root.
+- Check the built binary using ```./dist/deathstar -help```.
+- To install DeathStar to your path, run ```make install```.
+- This will install deathstar under /usr/bin and you can invoke ```deathstar``` from anywhere.
 
 
 

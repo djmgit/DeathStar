@@ -100,6 +100,11 @@ You can setup DeathStar from prebuilt binary using the following steps:
 - Optionally you can copy it to your path like ```/usr/local/bin```
 - Check out the binary ```./deathstar -help```
 
+**Building from source**
+
+You can build DeathStar from source using the following steps
+
+
 
 
 

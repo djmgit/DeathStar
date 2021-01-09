@@ -450,3 +450,11 @@ The above, might sound complicated, but it is not actually so. Lets see who we c
 
 The ```-local``` CLI option tells DeathStar that we want to use local zip file, hence DeathStar will not try to create a zip of its own. The ```-zip-file-path```
 simply takes the path to the zip package which we want to use.
+
+## Features to be added
+
+As already mentioned, DeathStar is in development. DeathStar should support the following features:
+
+- The AWS role creation for the lambda function is manual right now. This can be automated with the provision of providing custom role by user if required.
+- Conducting attacks in parallel. This will result in calling the created lambda function in parallel. For this we might also have to introduce an option
+  for configuring the lambda function concurrency.

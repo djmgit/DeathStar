@@ -33,8 +33,8 @@ cleanup by itself. All you have to do is provide config details so that it can o
 ## What exactly does DeathStar do and how does it do
 
 ``` 
-Before I countinue further, I would like to mention that although deathstar is usable, it is still under development and features are being added. Currently it
-only supports AWS lambda as a compute backend. 
+Before I countinue further, I would like to mention that although deathstar is usable, it is still under development and features are 
+being added. Currently it only supports AWS lambda as a compute backend. 
 ```
 DeathStar takes a configuration file, provisions a lambda function along with the handler, orchestrates the loadtest on the configured targets, displays the
 recorded metrics and finally cleans up the lambda function, thereby allowing you to carry out your loadtest in a fully automated and serverless manner.
@@ -380,3 +380,14 @@ The lambdaConfig yaml object keys takes parameters to configure the lambda funct
   target or invoke DeathStar again.
   
 - **lambdaRegion**: This is simply the AWS region where you want DeathStar to spawn the function.
+
+## How does DeathStar work internally : Prcess flow
+
+Lets start with taking another look at the DeathStar execution command:
+
+```./deathstar -deploy -conf config.yml```
+
+when we invoke this comand, the first thing that DeathStar does is, it tries to open the config file and read the configuration. First it picks up the
+config options provided for lambda and then it uses AWS Golang SDK to create a lambda function in the given region. Now as we know in order to create
+a lambda function we need a zip file (if not S3) containing the function code and a name for the function handler. In our case, we do not have a separate
+function handler project for DeathStar, but ```DeathStar itself is the function handler``` .

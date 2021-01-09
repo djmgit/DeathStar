@@ -398,9 +398,16 @@ lambda.Start(HandleLambdaEvent)
 which is basically the AWS Go SDK's way of invoking the lambda function handler to handle request. This handler function will then invoke vegeta library
 to actually hit the target. So, DeathStar does both the jobs of orchestrating the attack by creating and invoking the lambda function as well as it
 itself handles the function invocation as the the lambda function and carries out the actuall attack. The ```-deploy``` option simply tells DeathStar that
-it is not running as a lambda function on AWS, but it is being run from some other system to orchestrate the attack.
+it is not running as a lambda function on AWS, but it is being run from some other system to orchestrate the attack. So to summarise, just before, DeathStar
+creates the lambda function on AWS, it creates a zip package of itself and provides the created zip file's path to the AWS SDK's create lambda function input.
+As soon as the function is successfully created, it deletes the zip package.
 
 Now that we know how DeathStar creates and works as the lambda function lets continue with the flow. Next, DeathStar will find out the attack configutations
 provided in the config yaml file under the ```attacks``` section and start invoking the lambda function for each of the targets provided. Right now the attacks
 are done sequentially one after the other but it will provide a way to do in parallel in future. After it was finished attacking all the targets it will display
 the result and then clean up the lambda function.
+
+## Running DeathStar from macOS
+
+All the above steps are for linux based systems. However you can run DeathStar from macOS as well, but the steps will be different to some extend. The main issue
+for running DeathStar from macOS is the fact that DeathStar deploys itself as a function handler on AWS lambda as well. 

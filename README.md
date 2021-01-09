@@ -410,4 +410,6 @@ the result and then clean up the lambda function.
 ## Running DeathStar from macOS
 
 All the above steps are for linux based systems. However you can run DeathStar from macOS as well, but the steps will be different to some extend. The main issue
-for running DeathStar from macOS is the fact that DeathStar deploys itself as a function handler on AWS lambda as well. 
+for running DeathStar from macOS is the fact that DeathStar deploys itself as a function handler on AWS lambda as well. So its basically the same binary that runs
+on your system (local, jenkins, instance, wherever) as well as on the lambda. However, this is not possible on macOS. Because macOS wont be able to linux ELF
+binary (unless you are using a VM or a container in which case the scenario changes completely and will be same as running on linux).

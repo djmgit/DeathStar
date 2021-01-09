@@ -37,7 +37,10 @@ you want to work on it. Then you will be assigned to that issue and you can star
 
 While sending the PR, please make sure your commits are squashed. The commit message header should contain the corresponding issue number, like
 
+```
 Fixed #[issue_no] : Commit message header
+
+```
 
 The commit message body should describe in detail what has been done as a part of the PR.
 

@@ -447,3 +447,6 @@ The above, might sound complicated, but it is not actually so. Lets see who we c
 ./dist/deathstar -conf [conf.yml] -deploy -local -zip-file-path deathstar.zip
 
 ```
+
+The ```-local``` CLI option tells DeathStar that we want to use local zip file, hence DeathStar will not try to create a zip of its own. The ```-zip-file-path```
+simply takes the path to the zip package which we want to use.

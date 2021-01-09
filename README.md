@@ -396,4 +396,6 @@ main method will invoke :
 lambda.Start(HandleLambdaEvent)
 ```
 which is basically the AWS Go SDK's way of invoking the lambda function handler to handle request. This handler function will then invoke vegeta library
-to actually hit the target.
+to actually hit the target. So, DeathStar does both the jobs of orchestrating the attack by creating and invoking the lambda function as well as it
+itself handles the function invocation as the the lambda function and carries out the actuall attack. The ```-deploy``` option simply tells DeathStar that
+it is not running as a lambda function on AWS, but it is being run from some other system to orchestrate the attack.

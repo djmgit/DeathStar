@@ -389,5 +389,11 @@ Lets start with taking another look at the DeathStar execution command:
 
 when we invoke this comand, the first thing that DeathStar does is, it tries to open the config file and read the configuration. First it picks up the
 config options provided for lambda and then it uses AWS Golang SDK to create a lambda function in the given region. Now as we know in order to create
-a lambda function we need a zip file (if not S3) containing the function code and a name for the function handler. In our case, we do not have a separate
-function handler project for DeathStar, but ```DeathStar itself is the function handler``` .
+a lambda function we need a zip file (if not S3) containing the function code. In our case, we do not have a separate
+function handler project for DeathStar, but ```DeathStar itself is the function handler``` . If we do not provide the ```-deploy``` CLI option, DeathStar's
+main method will invoke :
+```
+lambda.Start(HandleLambdaEvent)
+```
+which is basically the AWS Go SDK's way of invoking the lambda function handler to handle request. This handler function will then invoke vegeta library
+to actually hit the target.

@@ -399,7 +399,7 @@ which is basically the AWS Go SDK's way of invoking the lambda function handler 
 to actually hit the target. So, DeathStar does both the jobs of orchestrating the attack by creating and invoking the lambda function as well as it
 itself handles the function invocation as the the lambda function and carries out the actuall attack. The ```-deploy``` option simply tells DeathStar that
 it is not running as a lambda function on AWS, but it is being run from some other system to orchestrate the attack. So to summarise, just before, DeathStar
-creates the lambda function on AWS, it creates a zip package of itself and provides the created zip file's path to the AWS SDK's create lambda function input.
+creates the lambda function on AWS, it creates a zip package of itself (the binary being run) and provides the created zip file's path to the AWS SDK's create lambda function input.
 As soon as the function is successfully created, it deletes the zip package.
 
 Now that we know how DeathStar creates and works as the lambda function lets continue with the flow. Next, DeathStar will find out the attack configutations
@@ -412,4 +412,10 @@ the result and then clean up the lambda function.
 All the above steps are for linux based systems. However you can run DeathStar from macOS as well, but the steps will be different to some extend. The main issue
 for running DeathStar from macOS is the fact that DeathStar deploys itself as a function handler on AWS lambda as well. So its basically the same binary that runs
 on your system (local, jenkins, instance, wherever) as well as on the lambda. However, this is not possible on macOS. Because macOS wont be able to linux ELF
-binary (unless you are using a VM or a container in which case the scenario changes completely and will be same as running on linux).
+binary (unless you are using a VM or a container in which case the scenario changes completely and will be same as running on linux). So, when running on macOS
+we have to provide the zip package which will contain the elf binary of DeathStar and run the other binary on macOS which is built for macOS. And additionaly
+we will have to tell DeathStar that do not create a zip of yourself but use the zip package provided by us while creating the lambda function.
+
+The above, might sound complicated, but it is not actually so. Lets see who we can do this easily :
+
+

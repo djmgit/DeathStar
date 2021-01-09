@@ -462,7 +462,11 @@ As already mentioned, DeathStar is in development. DeathStar should support the 
   in the desired subnet where the target service is running.
 - Right now the only supported backend is serverless lambda functions. However lambda function might not always be suitable for generating huge traffic. Parallel
   running function (as mentioned in second point) may be usefull, still we may require alternate backends. DeathStar should support alternate backends like:
+  
   -- EC2 instances: DeathStar should be able to spawn EC2 instances of desired type. We might be requiring higher number of vCPUs when generating huge
      SSL traffic.
+     
   -- Provision for integrating with Kubernetes compute: DeathStar can spawn pods dynamically, run the attack and then destroy the pods. This way we can utilise a
      kubernetes cluster if already present. 
+     
+     

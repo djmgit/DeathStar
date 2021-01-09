@@ -90,6 +90,7 @@ of now its manual.
 **Setting up DeathStar**
 
 DeathStar can be setup on your system/pipeline in either of the two ways. Either you can download pre-built binaries from github or you can build it yourself.
+``` Please note : below instructions are for linux based systems and not for macOS. We have a separate section for running DeathStar on macOS ```
 
 **Using the pre-built sources**
 
@@ -418,4 +419,7 @@ we will have to tell DeathStar that do not create a zip of yourself but use the 
 
 The above, might sound complicated, but it is not actually so. Lets see who we can do this easily :
 
+**Using prebuilt packages**
 
+- Setup DeathStar in the same way as shown above using prebuilt packages.
+- Download the zip package from macOS from where

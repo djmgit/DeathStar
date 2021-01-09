@@ -429,3 +429,21 @@ The above, might sound complicated, but it is not actually so. Lets see who we c
 ./deathstar -conf [conf.yml] -deploy -local -zip-file-path [zip-file-path-to-the-linux-zip-package]
 
 ```
+
+**By building from source**
+
+- Clone or download this repository and open it in your terminal.
+- First we need to make the zip package
+- Since we are building a Golang project binary on macOS, we need to tell Golang the target system is linux.
+- Run ```GOOS=linux make build```
+- This will build deathstar binary in the dist folder, you wont be able to run this binary as this is a linux elf.
+- Next for creating the package run ```make lambda_package```.
+- The above will create a zip file containing the linux elf in the root named ```deathstar.zip```
+- Next we have to build DeathStar for macOS. This can be done using ```make build``` command as we had done earlier. This will replace the linux binary
+  in dist folder with the binary meant to run on macOS.
+- Now you are all set. You can now run DeathStar using the following
+
+```
+./dist/deathstar -conf [conf.yml] -deploy -local -zip-file-path deathstar.zip
+
+```

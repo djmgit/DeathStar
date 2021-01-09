@@ -421,5 +421,11 @@ The above, might sound complicated, but it is not actually so. Lets see who we c
 
 **Using prebuilt packages**
 
-- Setup DeathStar in the same way as shown above using prebuilt packages.
-- Download the zip package from macOS from where
+- Setup DeathStar in the same way as shown above using prebuilt packages, however use the prebuild package from macOS from here.
+- Download the zip package for linux from here
+- Now you can run DeathStar using the following
+
+```
+./deathstar -conf [conf.yml] -deploy -local -zip-file-path [zip-file-path-to-the-linux-zip-package]
+
+```

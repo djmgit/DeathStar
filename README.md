@@ -399,3 +399,6 @@ which is basically the AWS Go SDK's way of invoking the lambda function handler 
 to actually hit the target. So, DeathStar does both the jobs of orchestrating the attack by creating and invoking the lambda function as well as it
 itself handles the function invocation as the the lambda function and carries out the actuall attack. The ```-deploy``` option simply tells DeathStar that
 it is not running as a lambda function on AWS, but it is being run from some other system to orchestrate the attack.
+Now that we know how DeathStar creates and works as the lambda function lets continue with the flow. Next, DeathStar will find out the attack configutations
+provided in the config yaml file under the ```attacks``` section and start invoking the lambda function for each of the targets provided. Right now the attacks
+are done sequentially one after the other but it will provide a way to do in parallel in future.

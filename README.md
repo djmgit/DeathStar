@@ -96,7 +96,7 @@ DeathStar can be setup on your system/pipeline in either of the two ways. Either
 
 You can setup DeathStar from prebuilt binary using the following steps:
 
-- Download the package : ```wget <url>```
+- Download the pre-built package suitabe for your system from the releases page.
 - Decompress the package : ```unzip <package>```
 - Optionally you can copy it to your path like ```/usr/local/bin```
 - Check out the binary ```./deathstar -help```
@@ -421,7 +421,7 @@ The above, might sound complicated, but it is not actually so. Lets see who we c
 
 **Using prebuilt packages**
 
-- Setup DeathStar in the same way as shown above using prebuilt packages, however use the prebuild package from macOS from here.
+- Setup DeathStar in the same way as shown above using prebuilt packages, however use the prebuild package from ```macOS``` from the realese page.
 - Download the zip package for linux from here
 - Now you can run DeathStar using the following
 
@@ -467,6 +467,6 @@ As already mentioned, DeathStar is in development. DeathStar should support the 
      SSL traffic.
      
   -- Provision for integrating with Kubernetes compute: DeathStar can spawn pods dynamically, run the attack and then destroy the pods. This way we can utilise a
-     kubernetes cluster if already present. 
+     kubernetes cluster if already present.
      
      
